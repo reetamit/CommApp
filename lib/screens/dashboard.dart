@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/home.dart';
 import 'package:flutter_app/screens/loginpage.dart';
+import 'package:flutter_app/screens/message.dart';
 import 'package:flutter_app/screens/profile.dart';
 import 'package:flutter_app/screens/request.dart';
 
@@ -39,10 +40,15 @@ class _DashboardPageState extends State<DashboardPage> {
     // settings page
     RequestScreen(),
 
+    // messages page
+    MessageScreen(),
+
     // profile page
     ProfileFormScreen(),
   ];
 
+  // Add a list for the titles.
+  final List<String> _titles = ['Home', 'Requests', 'Messages', 'Settings'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,6 +60,8 @@ class _DashboardPageState extends State<DashboardPage> {
               ? 'Home'
               : _selectedIndex == 1
               ? 'Request'
+              : _selectedIndex == 2
+              ? 'Messages'
               : 'Profile',
         ),
 
@@ -65,8 +73,11 @@ class _DashboardPageState extends State<DashboardPage> {
           ),
         ],
       ),
+
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
+        // Add this line to fix the visibility issue
+        type: BottomNavigationBarType.fixed,
         onTap: navigateTo,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
@@ -74,6 +85,7 @@ class _DashboardPageState extends State<DashboardPage> {
             icon: Icon(Icons.request_page),
             label: 'Requests',
           ),
+          BottomNavigationBarItem(icon: Icon(Icons.email), label: 'Messages'),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: 'Settings',

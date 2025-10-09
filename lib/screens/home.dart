@@ -171,6 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
           .toList();
     }
 
+    filteredRequests = [];
     for (var req in requests) {
       if (nearby.contains(req.email)) {
         filteredRequests.add(req);
