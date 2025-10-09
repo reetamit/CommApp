@@ -26,11 +26,11 @@
 		</data>
 		<key>Modules/FirebaseCoreInternal.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		LV8Ic0s1C4LUKfhlBG50N9gXHt4=
+		a8hqbxovq35uArWqOWEz4vKBfT0=
 		</data>
 		<key>Modules/FirebaseCoreInternal.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		W50RkFc/AIBSeP4fqjvyQAi7qZI=
+		60DYDGtDsiplOM2iyQ16kCJBQiM=
 		</data>
 		<key>Modules/FirebaseCoreInternal.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -42,7 +42,7 @@
 		</data>
 		<key>Modules/FirebaseCoreInternal.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		UMk9h4qHrg1uEBgzPB8V3LOuDxE=
+		1FlPleNXG42mHZbQyU3EVoYwLR0=
 		</data>
 		<key>Modules/FirebaseCoreInternal.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Modules/FirebaseCoreInternal.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		EWD3cnxurO2Rg++gMFT1SQg5irc=
+		hGU4U2Wdty7eOjBhfua77Loc1hU=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -95,14 +95,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			MnUxeqlduNmRpkioP8cHPfM2ifTYIEs3sXseq60k9jc=
+			y87pEVn0AAdTLXPZKdZwJi3dkIWF3W4zc4lVN7xnPUY=
 			</data>
 		</dict>
 		<key>Modules/FirebaseCoreInternal.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ATND73z1DMOb50MSlHPewWfHv6Jc4at8mMsUjlaBERI=
+			xdTa2Z5IgSzpXXpA8E/AHtDlcYLROQimbwWkp+OsYJs=
 			</data>
 		</dict>
 		<key>Modules/FirebaseCoreInternal.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
@@ -123,7 +123,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			cScF/oVbcEtWC7svPtVqPZAxP1GrmRdHH3zKsID/pXU=
+			Yo29CVUTWnH8xPMEbr+DES/0JsXrGSEmbfMPmVMpDkc=
 			</data>
 		</dict>
 		<key>Modules/FirebaseCoreInternal.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
@@ -144,7 +144,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			+uc5mr8sgtN6IcnRQhiZOGk/TQigWbClEUA8LMwOpbY=
+			ITXqZjKPLET92P7k50HeLVnYFm5OuMbbXO3j5prxQ30=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

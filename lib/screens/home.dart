@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/localization/words.dart';
 import 'package:flutter_app/models/auth_services.dart';
 import 'package:flutter_app/models/database_service.dart';
+import 'package:flutter_app/models/location_service.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import '../models/request.dart';
 import 'request_response.dart';
@@ -16,10 +18,30 @@ class HomeScreen extends StatefulWidget {
 //  HomePage({super.key});
 class _HomeScreenState extends State<HomeScreen> {
   List<Request> requests = [];
+  List<Request> filteredRequests = [];
+  List<Location> locations = [];
+
+  double _latitude = 0.0;
+  double _longitude = 0.0;
 
   String _formatDateTime(DateTime dt) {
     final df = DateFormat('hh:mm a MMM/dd/yyyy');
     return df.format(dt.toLocal());
+  }
+
+  Future<void> _fetchCurrentUsrLoc(String userEmail) async {
+    Map<String, dynamic>? userProfile = await DatabaseService().getDataByEmail(
+      email: userEmail,
+      path: Words.profileData,
+    );
+
+    if (userProfile != null) {
+      _latitude = userProfile[Words.profilelt] ?? 0.0;
+      _longitude = userProfile[Words.profilelg] ?? 0.0;
+    } else {
+      _latitude = 0.0;
+      _longitude = 0.0;
+    }
   }
 
   Future<String> _fetchName(String userEmail) async {
@@ -29,6 +51,8 @@ class _HomeScreenState extends State<HomeScreen> {
     );
 
     if (userProfile != null) {
+      _latitude = userProfile[Words.profilelt] ?? 0.0;
+      _longitude = userProfile[Words.profilelg] ?? 0.0;
       String firstName = userProfile[Words.profilefn] ?? 'Name unknown';
       print(firstName);
       return firstName.toString();
@@ -38,22 +62,35 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _fetchRequests() async {
+    // Get the current user's email
+    final userEmail =
+        authServiceNotifier.value.currentUser?.email ?? 'Email not found';
+    await _fetchCurrentUsrLoc(userEmail);
+
+    List<String> nearby = [];
+
     // Retrieve requests from the database to get the list of requests
     DataSnapshot? snapshot = await DatabaseService().read(
       path: Words.requestData,
+    );
+
+    // Retrieve requests from the database to get the list of requests
+    DataSnapshot? profilesnapshot = await DatabaseService().read(
+      path: Words.profileData,
     );
 
     if (snapshot != null) {
       final Map<dynamic, dynamic> values =
           snapshot.value as Map<dynamic, dynamic>;
 
-      // To store keys in a list
-      List<dynamic> keysList = values.keys.toList();
-      List<Object>? mylist = values.values.cast<Object>().toList();
+      if (profilesnapshot != null) {
+        final Map<dynamic, dynamic> pvalues =
+            profilesnapshot.value as Map<dynamic, dynamic>;
 
-      print(mylist);
-
-      /*requests = mylist
+        // To store keys in a list
+        /*List<dynamic> keysList = values.keys.toList();
+      //List<Object>? mylist = values.values.cast<Object>().toList();
+      requests = mylist
           .whereType<Map<dynamic, dynamic>>()
           .map(
             (data) => Request(
@@ -72,6 +109,42 @@ class _HomeScreenState extends State<HomeScreen> {
           .toList();
     }*/
 
+        locations = pvalues.entries
+            // Filter out entries whose values aren't the expected map type.
+            .where((entry) => entry.value is Map<dynamic, dynamic>)
+            .map((entry) {
+              // Here, 'entry.key' gives you the key and 'entry.value' gives you the value.
+              final Map<dynamic, dynamic> data =
+                  entry.value as Map<dynamic, dynamic>;
+
+              return Location(
+                // Example of using the value
+                email: data[Words.profilemail] ?? 'No Name',
+                latitude: data[Words.profilelt] ?? 0.0,
+                longitude: data[Words.profilelg] ?? 0.0,
+              );
+            })
+            .toList();
+
+        for (var loc in locations) {
+          double distanceInMeters = Geolocator.distanceBetween(
+            _latitude,
+            _longitude,
+            loc.latitude,
+            loc.longitude,
+          );
+
+          double distanceInMiles =
+              distanceInMeters / 1609.34; // 1 mile = 1609.34 meters
+
+          print(
+            'Location: ${loc.email}, Distance: ${distanceInMiles.toStringAsFixed(2)} miles',
+          );
+          if (distanceInMiles <= Words.searchRadiusInMiles) {
+            nearby.add(loc.email);
+          }
+        }
+      }
       requests = values.entries
           // Filter out entries whose values aren't the expected map type.
           .where((entry) => entry.value is Map<dynamic, dynamic>)
@@ -97,7 +170,18 @@ class _HomeScreenState extends State<HomeScreen> {
           })
           .toList();
     }
-    requests.sort((a, b) => b.dateTime.compareTo(a.dateTime));
+
+    for (var req in requests) {
+      if (nearby.contains(req.email)) {
+        filteredRequests.add(req);
+      }
+    }
+
+    print("Filted: ${filteredRequests.length}");
+    print("UnFilted: ${requests.length}");
+    print("NearBy: ${nearby.length}");
+
+    filteredRequests.sort((a, b) => b.dateTime.compareTo(a.dateTime));
     setState(() {}); // Refresh UI with fetched data
   }
 
@@ -128,17 +212,19 @@ class _HomeScreenState extends State<HomeScreen> {
       // appBar: AppBar(title: const Text('Requests')),
       body: ListView.separated(
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
-        itemCount: requests.length,
+        itemCount: filteredRequests.length,
         separatorBuilder: (_, __) => const SizedBox(height: 8),
         itemBuilder: (context, index) {
-          final req = requests[index];
+          final req = filteredRequests[index];
           return InkWell(
             onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (_) => RequestResponseScreen(request: req),
-                ),
-              );
+              Navigator.of(context)
+                  .push(
+                    MaterialPageRoute(
+                      builder: (_) => RequestResponseScreen(request: req),
+                    ),
+                  )
+                  .then((value) => _fetchRequests());
             },
             borderRadius: BorderRadius.circular(8.0),
             child: Container(

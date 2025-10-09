@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/localization/words.dart';
 import 'package:flutter_app/models/auth_services.dart';
 import 'package:flutter_app/models/database_service.dart';
+import 'package:flutter_app/screens/home.dart';
 
 class RequestScreen extends StatefulWidget {
   @override
@@ -90,7 +91,12 @@ class _RequestScreenState extends State<RequestScreen> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: _createRequest,
+                onPressed: () {
+                  _createRequest();
+                  //Navigator.of(
+                  //  context,
+                  //).push(MaterialPageRoute(builder: (_) => HomeScreen()));
+                },
                 child: Text('Create Request'),
               ),
             ),

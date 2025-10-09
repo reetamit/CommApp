@@ -14,6 +14,10 @@ class Words {
   static const profilemail = 'email'; //Key to Profile path
   static const profileil = 'interests';
   static const profileph = 'phone';
+  static const profilead = 'address';
+  static const profilelt = 'latitude';
+  static const profilelg = 'longitude';
+  static const profilezc = 'zipcode';
 
   static const requestData = 'Requests';
   static const requestType = 'title';
@@ -25,4 +29,6 @@ class Words {
   static const requestLocation = 'location';
   static const requestCategory = 'category';
   static const requestId = 'requestId';
+
+  static const double searchRadiusInMiles = 30;
 }
