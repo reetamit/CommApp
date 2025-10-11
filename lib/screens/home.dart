@@ -5,9 +5,9 @@ import 'package:flutter_app/models/auth_services.dart';
 import 'package:flutter_app/models/database_service.dart';
 import 'package:flutter_app/models/location_service.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:intl/intl.dart';
 import '../models/request.dart';
 import 'request_response.dart';
+import 'package:flutter_app/models/utility.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -23,11 +23,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   double _latitude = 0.0;
   double _longitude = 0.0;
-
-  String _formatDateTime(DateTime dt) {
-    final df = DateFormat('hh:mm a MMM/dd/yyyy');
-    return df.format(dt.toLocal());
-  }
 
   Future<void> _fetchCurrentUsrLoc(String userEmail) async {
     Map<String, dynamic>? userProfile = await DatabaseService().getDataByEmail(
@@ -173,7 +168,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
     filteredRequests = [];
     for (var req in requests) {
-      if (nearby.contains(req.email)) {
+      if (nearby.contains(req.email) &&
+          req.status.toLowerCase() != 'completed') {
         filteredRequests.add(req);
       }
     }
@@ -309,7 +305,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        _formatDateTime(req.dateTime),
+                        Utility.formatDateTime(req.dateTime),
                         style: TextStyle(fontSize: 9, color: Colors.grey[600]),
                       ),
                       const SizedBox(height: 20),

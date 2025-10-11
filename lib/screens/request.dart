@@ -88,16 +88,21 @@ class _RequestScreenState extends State<RequestScreen> {
               maxLines: 3,
             ),
             Spacer(),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  _createRequest();
-                  //Navigator.of(
-                  //  context,
-                  //).push(MaterialPageRoute(builder: (_) => HomeScreen()));
-                },
-                child: Text('Create Request'),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 30.0),
+              child: SizedBox(
+                width: double.infinity,
+
+                child: ElevatedButton(
+                  onPressed: () {
+                    _createRequest();
+                    //Navigator.of(
+                    //  context,
+                    //).push(MaterialPageRoute(builder: (_) => HomeScreen()));
+                  },
+                  style: Theme.of(context).elevatedButtonTheme.style,
+                  child: Text('Create Request'),
+                ),
               ),
             ),
           ],

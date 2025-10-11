@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/aboutus.dart';
 import 'package:flutter_app/screens/home.dart';
 import 'package:flutter_app/screens/loginpage.dart';
 import 'package:flutter_app/screens/message.dart';
@@ -42,13 +43,10 @@ class _DashboardPageState extends State<DashboardPage> {
 
     // messages page
     MessageScreen(),
-
-    // profile page
-    ProfileFormScreen(),
   ];
 
   // Add a list for the titles.
-  final List<String> _titles = ['Home', 'Requests', 'Messages', 'Settings'];
+  final List<String> _titles = ['Home', 'Requests', 'Messages'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,9 +58,10 @@ class _DashboardPageState extends State<DashboardPage> {
               ? 'Home'
               : _selectedIndex == 1
               ? 'Request'
-              : _selectedIndex == 2
-              ? 'Messages'
-              : 'Profile',
+              : 'Messages',
+          //: _selectedIndex == 2
+          //? 'Messages'
+          //: 'Profile',
         ),
 
         actions: [
@@ -86,11 +85,75 @@ class _DashboardPageState extends State<DashboardPage> {
             label: 'Requests',
           ),
           BottomNavigationBarItem(icon: Icon(Icons.email), label: 'Messages'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
+          //BottomNavigationBarItem(
+          //  icon: Icon(Icons.settings),
+          //  label: 'Settings',
+          //),
         ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            const DrawerHeader(
+              decoration: BoxDecoration(color: Colors.blue),
+              child: Text(
+                'Menu',
+                style: TextStyle(color: Colors.white, fontSize: 24),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.home),
+              title: const Text('Home'),
+              onTap: () {
+                navigateTo(0);
+                Navigator.pop(context); // Close the drawer
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.request_page),
+              title: const Text('Requests'),
+              onTap: () {
+                navigateTo(1);
+                Navigator.pop(context); // Close the drawer
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.email),
+              title: const Text('Messages'),
+              onTap: () {
+                navigateTo(2);
+                Navigator.pop(context); // Close the drawer
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text('Settings'),
+              onTap: () {
+                // Navigate to the profile screen
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => ProfileFormScreen()),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.info),
+              title: const Text('About Us'),
+              onTap: () {
+                // Navigate to the profile screen
+                Navigator.of(
+                  context,
+                ).push(MaterialPageRoute(builder: (context) => AboutUs()));
+              },
+            ),
+            const Divider(),
+            ListTile(
+              leading: const Icon(Icons.logout),
+              title: const Text('Logout'),
+              onTap: _logout,
+            ),
+          ],
+        ),
       ),
     );
   }

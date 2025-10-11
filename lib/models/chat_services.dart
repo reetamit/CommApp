@@ -62,6 +62,10 @@ class ChatService {
           }
         });
       }
+      // Remove from allRequests if status is 'completed'
+      allRequests.removeWhere(
+        (request) => request[Words.requestStatus].toLowerCase() == 'completed',
+      );
       return allRequests;
     });
   }
@@ -167,6 +171,7 @@ class ChatService {
       return allMessages;
     });
   }
+
   /*
   Stream<List<Map<String, dynamic>>> getMessagesStream(String receiverUser) {
     List<String> ids = [currentUser, receiverUser];

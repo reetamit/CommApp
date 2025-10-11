@@ -88,7 +88,7 @@ class _ProfileFormScreenState extends State<ProfileFormScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       //appBar: AppBar(title: Text('Profile Form')),
-      //appBar: AppBar(title: Text('Profile')),
+      appBar: AppBar(title: Text('Profile')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -209,7 +209,8 @@ class _ProfileFormScreenState extends State<ProfileFormScreen> {
                     //});
                   }
                 },
-                child: Text('Submit'),
+                style: Theme.of(context).elevatedButtonTheme.style,
+                child: Text('Save Profile'),
               ),
               SizedBox(height: 32),
             ],

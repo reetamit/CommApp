@@ -71,11 +71,15 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text(Words.signIn),
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Theme.of(context).colorScheme.primary,
+          ),
         ),
       ),
       body: SingleChildScrollView(
@@ -84,7 +88,18 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             children: [
               const SizedBox(height: 60.0),
-              const Text(Words.signIn, style: AppTextStyles.xxlBold),
+              //const Text(Words.signIn, style: AppTextStyles.xxlBold),
+              ClipRRect(
+                // The value (e.g., 8.0) controls how rounded the corners are.
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.asset(
+                  'assets/icon/icon.png',
+                  width: 100,
+                  height: 100,
+                  fit: BoxFit
+                      .cover, // Optional: ensures the image fills the space
+                ),
+              ),
               const SizedBox(height: 20.0),
               const Text(
                 Words
@@ -174,10 +189,17 @@ class _LoginPageState extends State<LoginPage> {
                         errormessage,
                         style: TextStyle(backgroundColor: Colors.redAccent),
                       ),
+
                       ElevatedButton(
-                        onPressed: _signIn, // Call the sign-in method
+                        onPressed: _signIn, // Your sign-in method
+                        style: Theme.of(context).elevatedButtonTheme.style,
                         child: const Text(Words.signIn),
                       ),
+                      if (_isLoading)
+                        const Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: CircularProgressIndicator(),
+                        ),
                     ],
                   ),
                 ),
