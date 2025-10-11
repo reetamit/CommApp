@@ -398,6 +398,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "rxdart",
+      "rootUri": "file:///Users/reetam/.pub-cache/hosted/pub.dev/rxdart-0.28.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "sky_engine",
       "rootUri": "file:///Users/reetam/develop/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",

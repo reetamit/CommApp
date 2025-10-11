@@ -45,6 +45,7 @@ dependencies:
   permission_handler: ^12.0.1
   geolocator: ^14.0.2
   get: ^4.7.2
+  rxdart: ^0.28.0
 
 dev_dependencies:
   flutter_test:

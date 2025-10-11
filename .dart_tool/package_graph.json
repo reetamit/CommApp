@@ -15,7 +15,8 @@
         "flutter_launcher_icons",
         "geolocator",
         "get",
-        "permission_handler"
+        "permission_handler",
+        "rxdart"
       ],
       "devDependencies": [
         "flutter_lints",
@@ -66,6 +67,11 @@
         "test_api",
         "vector_math"
       ]
+    },
+    {
+      "name": "rxdart",
+      "version": "0.28.0",
+      "dependencies": []
     },
     {
       "name": "get",
