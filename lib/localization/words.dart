@@ -4,7 +4,8 @@ class Words {
   static const String password = 'Password';
   static const String resetPassword = 'Reset Password?';
   static const String enterSomething = 'Please enter some text';
-  static const String welcomeMessage = 'Welcome back!';
+  static const String welcomeMessage =
+      'Welcome to Community Connect\nLocal voice, global impact!';
   static const String signup = "Don't have an account? Sign Up";
 
   //Data base paths and fields

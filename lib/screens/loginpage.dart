@@ -84,10 +84,10 @@ class _LoginPageState extends State<LoginPage> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(30.0),
+          padding: const EdgeInsets.all(15.0),
           child: Column(
             children: [
-              const SizedBox(height: 60.0),
+              const SizedBox(height: 30.0),
               //const Text(Words.signIn, style: AppTextStyles.xxlBold),
               ClipRRect(
                 // The value (e.g., 8.0) controls how rounded the corners are.
@@ -100,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                       .cover, // Optional: ensures the image fills the space
                 ),
               ),
-              const SizedBox(height: 20.0),
+              const SizedBox(height: 10.0),
               const Text(
                 Words
                     .welcomeMessage, // Added a placeholder for a welcome message
@@ -184,7 +184,7 @@ class _LoginPageState extends State<LoginPage> {
                           child: const Text(Words.signup),
                         ),
                       ),
-                      const SizedBox(height: 30),
+                      const SizedBox(height: 20),
                       Text(
                         errormessage,
                         style: TextStyle(backgroundColor: Colors.redAccent),

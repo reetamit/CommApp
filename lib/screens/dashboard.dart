@@ -5,6 +5,9 @@ import 'package:flutter_app/screens/loginpage.dart';
 import 'package:flutter_app/screens/message.dart';
 import 'package:flutter_app/screens/profile.dart';
 import 'package:flutter_app/screens/request.dart';
+import 'package:flutter_app/models/light_mode.dart';
+import 'package:flutter_app/screens/rewards.dart';
+import 'package:flutter_app/screens/Events.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({Key? key}) : super(key: key);
@@ -81,7 +84,7 @@ class _DashboardPageState extends State<DashboardPage> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.request_page),
+            icon: Icon(Icons.volunteer_activism_sharp),
             label: 'Requests',
           ),
           BottomNavigationBarItem(icon: Icon(Icons.email), label: 'Messages'),
@@ -103,7 +106,7 @@ class _DashboardPageState extends State<DashboardPage> {
               ),
             ),
             ListTile(
-              leading: const Icon(Icons.home),
+              leading: const Icon(Icons.home, color: AppColors.primaryBlue),
               title: const Text('Home'),
               onTap: () {
                 navigateTo(0);
@@ -111,7 +114,10 @@ class _DashboardPageState extends State<DashboardPage> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.request_page),
+              leading: Icon(
+                Icons.volunteer_activism_sharp,
+                color: AppColors.primaryBlue,
+              ),
               title: const Text('Requests'),
               onTap: () {
                 navigateTo(1);
@@ -119,7 +125,17 @@ class _DashboardPageState extends State<DashboardPage> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.email),
+              leading: Icon(Icons.create, color: AppColors.primaryBlue),
+              title: const Text('Events'),
+              onTap: () {
+                // Navigate to the profile screen
+                Navigator.of(
+                  context,
+                ).push(MaterialPageRoute(builder: (context) => EventsScreen()));
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.email, color: AppColors.primaryBlue),
               title: const Text('Messages'),
               onTap: () {
                 navigateTo(2);
@@ -127,7 +143,7 @@ class _DashboardPageState extends State<DashboardPage> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.settings),
+              leading: const Icon(Icons.settings, color: AppColors.primaryBlue),
               title: const Text('Settings'),
               onTap: () {
                 // Navigate to the profile screen
@@ -137,7 +153,20 @@ class _DashboardPageState extends State<DashboardPage> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.info),
+              leading: const Icon(
+                Icons.auto_awesome,
+                color: AppColors.primaryBlue,
+              ),
+              title: const Text('Rewards'),
+              onTap: () {
+                // Navigate to the profile screen
+                Navigator.of(
+                  context,
+                ).push(MaterialPageRoute(builder: (context) => RewardsPage()));
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.info, color: AppColors.primaryBlue),
               title: const Text('About Us'),
               onTap: () {
                 // Navigate to the profile screen
@@ -148,7 +177,7 @@ class _DashboardPageState extends State<DashboardPage> {
             ),
             const Divider(),
             ListTile(
-              leading: const Icon(Icons.logout),
+              leading: const Icon(Icons.logout, color: AppColors.primaryBlue),
               title: const Text('Logout'),
               onTap: _logout,
             ),
