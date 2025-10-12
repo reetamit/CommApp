@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/localization/words.dart';
 import 'package:flutter_app/models/auth_services.dart';
 import 'package:flutter_app/models/database_service.dart';
-
 import 'package:flutter_app/models/light_mode.dart';
 
 class RewardsPage extends StatelessWidget {

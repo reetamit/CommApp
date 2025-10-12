@@ -8,6 +8,7 @@ import 'package:geolocator/geolocator.dart';
 import '../models/request.dart';
 import 'request_response.dart';
 import 'package:flutter_app/models/utility.dart';
+import 'package:flutter_app/models/light_mode.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -207,10 +208,24 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       // appBar: AppBar(title: const Text('Requests')),
+      /*appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        flexibleSpace: Container(
+          // Apply a Container with the gradient here
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: <Color>[AppColors.accentGreen, AppColors.primaryBlue],
+            ),
+          ),
+        ),
+      ),*/
       body: ListView.separated(
-        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 5.0),
         itemCount: filteredRequests.length,
-        separatorBuilder: (_, __) => const SizedBox(height: 8),
+        separatorBuilder: (_, __) => const SizedBox(height: 10),
         itemBuilder: (context, index) {
           final req = filteredRequests[index];
           return InkWell(

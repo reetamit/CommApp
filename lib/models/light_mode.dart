@@ -21,6 +21,7 @@ ThemeData lightMode = ThemeData(
   appBarTheme: AppBarTheme(
     //backgroundColor: Colors.blue,
     backgroundColor: AppColors.primaryBlue,
+    //backgroundColor: Colors.transparent,
     iconTheme: const IconThemeData(color: Colors.white),
     titleTextStyle: const TextStyle(color: Colors.white, fontSize: 20),
   ),
@@ -34,7 +35,7 @@ ThemeData lightMode = ThemeData(
     ),
   ),
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-    backgroundColor: Color(0xFF0096d8), // Background color
+    backgroundColor: AppColors.primaryBlue, // Background color
     selectedItemColor: Colors.white, // Color for selected item
     unselectedItemColor: Colors.black54, // Color for unselected items
     selectedIconTheme: IconThemeData(size: 28), // Style for selected icon

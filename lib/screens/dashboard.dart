@@ -7,7 +7,7 @@ import 'package:flutter_app/screens/profile.dart';
 import 'package:flutter_app/screens/request.dart';
 import 'package:flutter_app/models/light_mode.dart';
 import 'package:flutter_app/screens/rewards.dart';
-import 'package:flutter_app/screens/Events.dart';
+import 'package:flutter_app/screens/events.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({Key? key}) : super(key: key);
@@ -98,11 +98,14 @@ class _DashboardPageState extends State<DashboardPage> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            const DrawerHeader(
-              decoration: BoxDecoration(color: Colors.blue),
-              child: Text(
-                'Menu',
-                style: TextStyle(color: Colors.white, fontSize: 24),
+            SizedBox(
+              height: 100.00,
+              child: const DrawerHeader(
+                decoration: BoxDecoration(color: AppColors.primaryBlue),
+                child: Text(
+                  'Menu',
+                  style: TextStyle(color: Colors.white, fontSize: 24),
+                ),
               ),
             ),
             ListTile(
@@ -131,7 +134,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 // Navigate to the profile screen
                 Navigator.of(
                   context,
-                ).push(MaterialPageRoute(builder: (context) => EventsScreen()));
+                ).push(MaterialPageRoute(builder: (context) => EventScreen()));
               },
             ),
             ListTile(
