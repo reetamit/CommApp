@@ -19,6 +19,7 @@ class Words {
   static const profilelt = 'latitude';
   static const profilelg = 'longitude';
   static const profilezc = 'zipcode';
+  static const profilecc = 'badgeinfo';
 
   static const requestData = 'Requests';
   static const requestType = 'title';
@@ -30,6 +31,8 @@ class Words {
   static const requestLocation = 'location';
   static const requestCategory = 'category';
   static const requestId = 'requestId';
+  static const reqtypePending = 'Responded';
+  static const reqtypeComplete = 'Completed';
 
   static const double searchRadiusInMiles = 30;
 }

@@ -99,7 +99,7 @@ class _DashboardPageState extends State<DashboardPage> {
           padding: EdgeInsets.zero,
           children: <Widget>[
             SizedBox(
-              height: 100.00,
+              height: 130.00,
               child: const DrawerHeader(
                 decoration: BoxDecoration(color: AppColors.primaryBlue),
                 child: Text(

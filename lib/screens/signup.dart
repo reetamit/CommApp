@@ -134,6 +134,7 @@ class _SignUpFormScreenState extends State<SignUpFormScreen> {
           Words.profileil: interests,
           Words.profilelg: _currentPosition?.longitude ?? 0.0,
           Words.profilelt: _currentPosition?.latitude ?? 0.0,
+          Words.profilecc: 0,
         };
         await DatabaseService().create(path: Words.profileData, data: userData);
 

@@ -206,9 +206,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: AppBar(title: const Text('Requests')),
-      /*appBar: AppBar(
+    if (filteredRequests.isEmpty) {
+      return const Center(
+        child: Text('There is no request pending from your community!'),
+      );
+    } else {
+      return Scaffold(
+        // appBar: AppBar(title: const Text('Requests')),
+        /*appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         flexibleSpace: Container(
@@ -222,125 +227,132 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),*/
-      body: ListView.separated(
-        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 5.0),
-        itemCount: filteredRequests.length,
-        separatorBuilder: (_, __) => const SizedBox(height: 10),
-        itemBuilder: (context, index) {
-          final req = filteredRequests[index];
-          return InkWell(
-            onTap: () {
-              Navigator.of(context)
-                  .push(
-                    MaterialPageRoute(
-                      builder: (_) => RequestResponseScreen(request: req),
+        body: ListView.separated(
+          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 5.0),
+          itemCount: filteredRequests.length,
+          separatorBuilder: (_, __) => const SizedBox(height: 10),
+          itemBuilder: (context, index) {
+            final req = filteredRequests[index];
+            return InkWell(
+              onTap: () {
+                Navigator.of(context)
+                    .push(
+                      MaterialPageRoute(
+                        builder: (_) => RequestResponseScreen(request: req),
+                      ),
+                    )
+                    .then((value) => _fetchRequests());
+              },
+              borderRadius: BorderRadius.circular(8.0),
+              child: Container(
+                padding: const EdgeInsets.all(12.0),
+                decoration: BoxDecoration(
+                  color: _getStatusColor(req.status),
+                  borderRadius: BorderRadius.circular(8.0),
+                  border: Border.all(color: Colors.grey.shade300),
+                  //color: Colors.grey[100],
+                  //borderRadius: BorderRadius.circular(8.0),
+                  //border: Border.all(color: Colors.grey.shade300),
+                ),
+                child: Row(
+                  children: [
+                    // --- Add the Icon widget here ---
+                    Icon(
+                      Icons.message_outlined, // Use an appropriate icon
+                      color: Colors.grey[700],
+                      size: 24,
                     ),
-                  )
-                  .then((value) => _fetchRequests());
-            },
-            borderRadius: BorderRadius.circular(8.0),
-            child: Container(
-              padding: const EdgeInsets.all(12.0),
-              decoration: BoxDecoration(
-                color: _getStatusColor(req.status),
-                borderRadius: BorderRadius.circular(8.0),
-                border: Border.all(color: Colors.grey.shade300),
-                //color: Colors.grey[100],
-                //borderRadius: BorderRadius.circular(8.0),
-                //border: Border.all(color: Colors.grey.shade300),
-              ),
-              child: Row(
-                children: [
-                  // --- Add the Icon widget here ---
-                  Icon(
-                    Icons.message_outlined, // Use an appropriate icon
-                    color: Colors.grey[700],
-                    size: 24,
-                  ),
-                  const SizedBox(width: 12), // Add some spacing
-                  Expanded(
-                    child: Column(
+                    const SizedBox(width: 12), // Add some spacing
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            req.title,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          // Use FutureBuilder to display the name
+                          FutureBuilder<String>(
+                            future: _fetchName(req.email),
+                            builder: (context, snapshot) {
+                              // Display a loading indicator or placeholder text
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return Text(
+                                  'Request from: ${req.email.split('@')[0]} (Loading...)',
+                                  style: const TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                );
+                              }
+                              // Display the fetched name
+                              else if (snapshot.hasData) {
+                                return Text(
+                                  'Request from: ${snapshot.data}',
+                                  style: const TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                );
+                              }
+                              // Display an error or default message
+                              else {
+                                return Text(
+                                  'Request from: ${req.email.split('@')[0]} (Name unknown)',
+                                  style: const TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                );
+                              }
+                            },
+                          ),
+                          const SizedBox(height: 6),
+                          Text(
+                            req.description,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          req.title,
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
+                          Utility.formatDateTime(req.dateTime),
+                          style: TextStyle(
+                            fontSize: 9,
+                            color: Colors.grey[600],
                           ),
                         ),
-                        // Use FutureBuilder to display the name
-                        FutureBuilder<String>(
-                          future: _fetchName(req.email),
-                          builder: (context, snapshot) {
-                            // Display a loading indicator or placeholder text
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              return Text(
-                                'Request from: ${req.email.split('@')[0]} (Loading...)',
-                                style: const TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              );
-                            }
-                            // Display the fetched name
-                            else if (snapshot.hasData) {
-                              return Text(
-                                'Request from: ${snapshot.data}',
-                                style: const TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              );
-                            }
-                            // Display an error or default message
-                            else {
-                              return Text(
-                                'Request from: ${req.email.split('@')[0]} (Name unknown)',
-                                style: const TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              );
-                            }
-                          },
-                        ),
-                        const SizedBox(height: 6),
+                        const SizedBox(height: 20),
                         Text(
-                          req.description,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
+                          'Status: ${req.status}',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey[600],
+                          ),
                         ),
                       ],
                     ),
-                  ),
-                  const SizedBox(width: 12),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        Utility.formatDateTime(req.dateTime),
-                        style: TextStyle(fontSize: 9, color: Colors.grey[600]),
-                      ),
-                      const SizedBox(height: 20),
-                      Text(
-                        'Status: ${req.status}',
-                        style: TextStyle(fontSize: 12, color: Colors.grey[600]),
-                      ),
-                    ],
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          );
-        },
-      ),
-      // Add the FloatingActionButton here
-      floatingActionButton: FloatingActionButton(
-        onPressed: _fetchRequests, // Call the function that fetches the data
-        child: const Icon(Icons.refresh),
-      ),
-    );
+            );
+          },
+        ),
+        // Add the FloatingActionButton here
+        floatingActionButton: FloatingActionButton(
+          onPressed: _fetchRequests, // Call the function that fetches the data
+          child: const Icon(Icons.refresh),
+        ),
+      );
+    }
   }
 }

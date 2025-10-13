@@ -79,9 +79,31 @@ class _RequestResponseScreenState extends State<RequestResponseScreen> {
       // E.g., The owner might just be able to complete or delete the request.
       // Maybe prevent them from "responding" to their own request.
     } else {
-      // Logic for a volunteer responding to a request
-      Map<String, dynamic>? userProfile = await DatabaseService()
-          .getDataByEmail(email: userEmail, path: Words.profileData);
+      if (_selectedType == Words.reqtypeComplete) {
+        // Logic for a volunteer responding to a request
+        Map<String, dynamic>? userProfile = await DatabaseService()
+            .getDataByEmail(email: userEmail, path: Words.profileData);
+
+        if (userProfile != null) {
+          int currentBadgeCount = 0;
+          currentBadgeCount = userProfile[Words.profilecc];
+          print('Userprofile current badge info - $currentBadgeCount');
+
+          String? profileKey = await DatabaseService().getPathKey(
+            email: userEmail,
+            path: Words.profileData,
+          );
+
+          if (profileKey != null) {
+            //Update status of the request to 'Responded'
+            await DatabaseService().update(
+              path:
+                  '${Words.profileData}/$profileKey', // Correctly targets the specific request
+              data: {Words.profilecc: currentBadgeCount + 1},
+            );
+          }
+        }
+      }
       // Now you have userProfile and requestId, you can proceed with your logic
       // For example, you might want to include the user's name in the response
       //Update status of the request to 'Responded'

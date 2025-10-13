@@ -79,7 +79,7 @@ class DatabaseService {
   }
 
   // Assume 'snapshot' is the DataSnapshot of the parent "Requests" node
-  Future<String> getRequestIds({
+  Future<String?> getPathKey({
     required String email,
     required String path,
   }) async {
@@ -91,10 +91,14 @@ class DatabaseService {
 
       if (event.snapshot.value != null && event.snapshot.value is Map) {
         Map<dynamic, dynamic> requestsMap = event.snapshot.value as Map;
-        requestsMap.keys.forEach((key) {
+
+        // Check if the map is not empty
+        if (requestsMap.isNotEmpty) {
+          // Get the first key from the map
+          String? key = requestsMap.keys.first;
           print('Request ID: $key'); // This will print each request ID
           return key;
-        });
+        }
       }
       return 'Key not found'; // No profile found for the given email
     } catch (e) {
