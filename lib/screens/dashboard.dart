@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/EventsPage.dart';
 import 'package:flutter_app/screens/aboutus.dart';
 import 'package:flutter_app/screens/home.dart';
 import 'package:flutter_app/screens/loginpage.dart';
@@ -7,7 +8,6 @@ import 'package:flutter_app/screens/profile.dart';
 import 'package:flutter_app/screens/request.dart';
 import 'package:flutter_app/models/light_mode.dart';
 import 'package:flutter_app/screens/rewards.dart';
-import 'package:flutter_app/screens/events.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({Key? key}) : super(key: key);
@@ -134,7 +134,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 // Navigate to the profile screen
                 Navigator.of(
                   context,
-                ).push(MaterialPageRoute(builder: (context) => EventScreen()));
+                ).push(MaterialPageRoute(builder: (context) => EventsPage()));
               },
             ),
             ListTile(

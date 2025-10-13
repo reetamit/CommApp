@@ -34,7 +34,7 @@
 		</data>
 		<key>flutter_assets/assets/images/.DS_Store</key>
 		<data>
-		YhznvtgGxsteb/GEkBk1ith45ms=
+		IeK7EUnZ0PfDahAUCURZWaJjrh8=
 		</data>
 		<key>flutter_assets/assets/images/Rewards10.png</key>
 		<data>
@@ -52,37 +52,9 @@
 		<data>
 		sOM5dSNnAxE04VVf9nHeKfguBhs=
 		</data>
-		<key>flutter_assets/assets/images/Rewards_participant.png</key>
-		<data>
-		Hlj+B9MblfMXm0PBDARXtTkriog=
-		</data>
 		<key>flutter_assets/assets/images/login.png</key>
 		<data>
 		xU/9wgW8iF2APiSb+ItysPTKG2U=
-		</data>
-		<key>flutter_assets/assets/images/medal-icon0.png</key>
-		<data>
-		6mhGw5C1Aabc/89bgKn6C6yVpxs=
-		</data>
-		<key>flutter_assets/assets/images/medal-icon1.png</key>
-		<data>
-		CvlV/oDaKLKQYUmhij+0m9Oym7o=
-		</data>
-		<key>flutter_assets/assets/images/medal-icon2.png</key>
-		<data>
-		iCxbseQidKa/xxVTeac6V02qKv4=
-		</data>
-		<key>flutter_assets/assets/images/medal-icon3.png</key>
-		<data>
-		5IpnhCT5PdtGBJK9favX/5EoXGg=
-		</data>
-		<key>flutter_assets/assets/images/medal-icon4.png</key>
-		<data>
-		U4asDixsgB9IOfKjG6tLgyxfXhY=
-		</data>
-		<key>flutter_assets/assets/images/medal-icon5.png</key>
-		<data>
-		Wt12t1zBGsX4qW3c8/CxM+1eibs=
 		</data>
 		<key>flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<data>
@@ -94,7 +66,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		9ub+N6EuMnisDwUBTThQoCd4zpc=
+		2PJfQuQhX3CFt9IFgtY6t83LmvU=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -181,60 +153,11 @@
 			4mnm5RgvjYnnff5yC53mdfclDPU6EV9/fpKxmgnSe0I=
 			</data>
 		</dict>
-		<key>flutter_assets/assets/images/Rewards_participant.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			FUC1JSmqeUmYz8yFRuC+suNczg43l3t4aRUNZ3Xl4Fo=
-			</data>
-		</dict>
 		<key>flutter_assets/assets/images/login.png</key>
 		<dict>
 			<key>hash2</key>
 			<data>
 			2ZS2fw3nCM7Zom/jdjommGate3BbEiKCvwfTV8SBPaI=
-			</data>
-		</dict>
-		<key>flutter_assets/assets/images/medal-icon0.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			eANVm+WJz0W8ANaLJGELSOAx/Jdz+TBQdwc1w+454Uk=
-			</data>
-		</dict>
-		<key>flutter_assets/assets/images/medal-icon1.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			R25gU+yBnnig4etuyVPGOMOfvEVVQUTOxRGBvZX0BH8=
-			</data>
-		</dict>
-		<key>flutter_assets/assets/images/medal-icon2.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			cXl+smF9y5eOLEMXCJGfVNUu6F05uq//2oES7CQ78qg=
-			</data>
-		</dict>
-		<key>flutter_assets/assets/images/medal-icon3.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			fb24U0th/O9Ld1bVKJAWloLC5I1xZLYMfg/uoSxd8Zo=
-			</data>
-		</dict>
-		<key>flutter_assets/assets/images/medal-icon4.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			LL29S78iu1vSUVw5UM2spSaspGqjPgcCeA1XPCQ47jY=
-			</data>
-		</dict>
-		<key>flutter_assets/assets/images/medal-icon5.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			DlHnjBM7Inkm3c/vvK6Xn/6C3HAiOyiJNoUvtYMwkp4=
 			</data>
 		</dict>
 		<key>flutter_assets/fonts/MaterialIcons-Regular.otf</key>
@@ -255,7 +178,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			jh9hgwvHuhxNp5AWGjOD2JfuI/NV+vPvTJx4u9Nuw2Y=
+			IGjEyUUISvD+7KP0X2R7Hsc/1BgYQJiE0gozccNhUz4=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>

@@ -34,5 +34,13 @@ class Words {
   static const reqtypePending = 'Responded';
   static const reqtypeComplete = 'Completed';
 
+  // Event model
+  static const eventPath = 'Events';
+  static const eventType = 'title';
+  static const eventDesc = 'description';
+  static const eventStatus = 'status';
+  static const eventUser = 'email'; //Key to Requests path
+  static const eventTimestamp = 'timestamp';
+
   static const double searchRadiusInMiles = 30;
 }
