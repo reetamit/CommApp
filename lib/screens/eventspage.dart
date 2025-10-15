@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/gradient_theme.dart';
-import 'package:flutter_app/models/light_mode.dart';
 import 'package:flutter_app/screens/create_event.dart';
 import 'package:flutter_app/screens/ongoing_events.dart';
 
@@ -37,17 +36,27 @@ class _EventsPageState extends State<EventsPage> {
         ),
       ),
       body: _screens[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: _onItemTapped,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.event),
-            label: 'Ongoing Events',
+      bottomNavigationBar: Stack(
+        children: <Widget>[
+          // The gradient container is the first child
+          Container(
+            height: 100, // Match the height of the BottomNavigationBar
+            decoration: const BoxDecoration(gradient: AppGradients.light),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add_circle),
-            label: 'Create Event',
+          BottomNavigationBar(
+            backgroundColor: Colors.transparent,
+            currentIndex: _currentIndex,
+            onTap: _onItemTapped,
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.event),
+                label: 'Ongoing Events',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.add_circle),
+                label: 'Create Event',
+              ),
+            ],
           ),
         ],
       ),

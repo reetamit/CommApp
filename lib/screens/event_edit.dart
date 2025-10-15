@@ -3,6 +3,7 @@ import 'package:flutter_app/localization/words.dart';
 import 'package:flutter_app/models/auth_services.dart';
 import 'package:flutter_app/models/database_service.dart';
 import 'package:flutter_app/models/event.dart';
+import 'package:flutter_app/models/gradient_theme.dart';
 import 'package:intl/intl.dart';
 
 class EventEditScreen extends StatefulWidget {
@@ -127,6 +128,10 @@ class _EventEditScreenState extends State<EventEditScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(isOwner ? 'Event Edit Screen' : 'Respond to Request'),
+        backgroundColor: Colors.transparent,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(gradient: AppGradients.light),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
