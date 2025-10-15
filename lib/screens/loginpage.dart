@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/auth_services.dart';
 import 'package:flutter_app/models/gradient_background.dart';
+import 'package:flutter_app/models/gradient_theme.dart';
 import 'package:flutter_app/screens/dashboard.dart';
 import 'package:flutter_app/screens/signup.dart';
 import 'package:flutter_app/styles/app_styles.dart';
@@ -74,7 +75,11 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(Words.signIn),
-        leading: IconButton(
+        backgroundColor: Colors.transparent,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(gradient: AppGradients.light),
+        ),
+        /*leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
           },
@@ -82,7 +87,7 @@ class _LoginPageState extends State<LoginPage> {
             Icons.arrow_back_ios,
             color: Theme.of(context).colorScheme.primary,
           ),
-        ),
+        ),*/
       ),
       body: SingleChildScrollView(
         child: Padding(

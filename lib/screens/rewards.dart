@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/localization/words.dart';
 import 'package:flutter_app/models/auth_services.dart';
 import 'package:flutter_app/models/database_service.dart';
+import 'package:flutter_app/models/gradient_theme.dart';
 import 'package:flutter_app/models/light_mode.dart';
 
 // 1. Change to a StatefulWidget
@@ -79,7 +80,13 @@ class _RewardsPageState extends State<RewardsPage> {
     return Theme(
       data: lightMode,
       child: Scaffold(
-        appBar: AppBar(title: const Text('Rewards')),
+        appBar: AppBar(
+          title: const Text('Rewards'),
+          backgroundColor: Colors.transparent,
+          flexibleSpace: Container(
+            decoration: BoxDecoration(gradient: AppGradients.light),
+          ),
+        ),
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(10.0),

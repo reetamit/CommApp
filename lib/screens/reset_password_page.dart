@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_app/localization/words.dart';
+import 'package:flutter_app/models/gradient_theme.dart';
 
 class ResetPasswordPage extends StatefulWidget {
   final String? email;
@@ -70,7 +71,13 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Reset Password')),
+      appBar: AppBar(
+        title: const Text('Reset Password'),
+        backgroundColor: Colors.transparent,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(gradient: AppGradients.light),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Form(

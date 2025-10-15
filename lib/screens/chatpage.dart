@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/localization/words.dart';
 import 'package:flutter_app/models/auth_services.dart';
 import 'package:flutter_app/models/chat_services.dart';
+import 'package:flutter_app/models/database_service.dart';
+import 'package:flutter_app/models/gradient_theme.dart';
+import 'package:flutter_app/models/light_mode.dart';
 
 class ChatScreen extends StatelessWidget {
   final String receiverId;
@@ -15,6 +19,22 @@ class ChatScreen extends StatelessWidget {
   String currentUser =
       authServiceNotifier.value.currentUser?.email ?? 'Email not found';
 
+  Future<String> _fetchName() async {
+    final userEmail =
+        authServiceNotifier.value.currentUser?.email ?? 'Email not found';
+
+    Map<String, dynamic>? userProfile = await DatabaseService().getDataByEmail(
+      email: userEmail,
+      path: Words.profileData,
+    );
+
+    String _firstName = '';
+    if (userProfile != null) {
+      _firstName = userProfile[Words.profilefn];
+    }
+    return _firstName;
+  }
+
   void sendMessage() {
     final message = _messageController.text.trim();
     if (message.isNotEmpty) {
@@ -26,12 +46,32 @@ class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Chat for Request for $receiverId')),
-      body: Column(
-        children: [
-          Expanded(child: _buildMessageList()),
-          _buildUserInput(),
-        ],
+      appBar: AppBar(
+        title: FutureBuilder<String>(
+          future: _fetchName(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Text('Loading...');
+            } else if (snapshot.hasError) {
+              return const Text('Error');
+            } else {
+              return Text('Chat window for ${snapshot.data}');
+            }
+          },
+        ),
+        backgroundColor: Colors.transparent,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(gradient: AppGradients.light),
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0), // Adjust the value as needed
+        child: Column(
+          children: [
+            Expanded(child: _buildMessageList()),
+            _buildUserInput(),
+          ],
+        ),
       ),
     );
   }
@@ -96,7 +136,8 @@ class ChatScreen extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 12.0),
         padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
         decoration: BoxDecoration(
-          color: isMe ? Theme.of(context).colorScheme.primary : Colors.grey,
+          //color: isMe ? Theme.of(context).colorScheme.primary : Colors.grey,
+          color: isMe ? AppColors.primaryBlue : AppColors.accentGreen,
           borderRadius: BorderRadius.only(
             topLeft: const Radius.circular(20.0),
             topRight: const Radius.circular(20.0),
@@ -167,7 +208,19 @@ class ChatScreen extends StatelessWidget {
         Expanded(
           child: TextField(
             controller: _messageController,
-            decoration: InputDecoration(hintText: 'Type a message'),
+            decoration: InputDecoration(
+              hintText: 'Type a message',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(
+                  25.0,
+                ), // Optional: rounded corners
+                borderSide: const BorderSide(color: Colors.grey),
+              ),
+              contentPadding: const EdgeInsets.symmetric(
+                vertical: 16.0,
+                horizontal: 20.0,
+              ),
+            ),
           ),
         ),
         IconButton(icon: Icon(Icons.send), onPressed: sendMessage),

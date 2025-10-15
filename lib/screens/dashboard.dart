@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/models/gradient_theme.dart';
 import 'package:flutter_app/screens/EventsPage.dart';
 import 'package:flutter_app/screens/aboutus.dart';
 import 'package:flutter_app/screens/home.dart';
@@ -66,7 +67,10 @@ class _DashboardPageState extends State<DashboardPage> {
           //? 'Messages'
           //: 'Profile',
         ),
-
+        backgroundColor: Colors.transparent,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(gradient: AppGradients.light),
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.logout),
@@ -76,32 +80,48 @@ class _DashboardPageState extends State<DashboardPage> {
         ],
       ),
 
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        // Add this line to fix the visibility issue
-        type: BottomNavigationBarType.fixed,
-        onTap: navigateTo,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.volunteer_activism_sharp),
-            label: 'Requests',
+      bottomNavigationBar: Stack(
+        children: <Widget>[
+          // The gradient container is the first child
+          Container(
+            height: 100, // Match the height of the BottomNavigationBar
+            decoration: const BoxDecoration(gradient: AppGradients.light),
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.email), label: 'Messages'),
-          //BottomNavigationBarItem(
-          //  icon: Icon(Icons.settings),
-          //  label: 'Settings',
-          //),
+          BottomNavigationBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0, // Remove the shadow
+            currentIndex: _selectedIndex,
+            // Add this line to fix the visibility issue
+            type: BottomNavigationBarType.fixed,
+            onTap: navigateTo,
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.volunteer_activism_sharp),
+                label: 'Requests',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.email),
+                label: 'Messages',
+              ),
+              //BottomNavigationBarItem(
+              //  icon: Icon(Icons.settings),
+              //  label: 'Settings',
+              //),
+            ],
+          ),
         ],
       ),
+
       drawer: Drawer(
+        width: 220.0,
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
             SizedBox(
-              height: 130.00,
+              height: 120.00,
               child: const DrawerHeader(
-                decoration: BoxDecoration(color: AppColors.primaryBlue),
+                decoration: BoxDecoration(gradient: AppGradients.light),
                 child: Text(
                   'Menu',
                   style: TextStyle(color: Colors.white, fontSize: 24),

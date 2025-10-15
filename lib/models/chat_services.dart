@@ -162,7 +162,7 @@ class ChatService {
       }
 
       // Sort all messages by timestamp
-      allMessages.sort((a, b) {
+      allMessages.sort((b, a) {
         final aTimestamp = DateTime.parse(a['timestamp']);
         final bTimestamp = DateTime.parse(b['timestamp']);
         return aTimestamp.compareTo(bTimestamp);

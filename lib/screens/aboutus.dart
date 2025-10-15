@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/models/gradient_theme.dart';
 import 'package:flutter_app/models/light_mode.dart';
 
 class AboutUs extends StatelessWidget {
@@ -19,7 +20,13 @@ Join us. Be part of the change.''';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('About Us')),
+      appBar: AppBar(
+        title: const Text('About Us'),
+        backgroundColor: Colors.transparent,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(gradient: AppGradients.light),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [

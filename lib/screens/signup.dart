@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/localization/words.dart';
 import 'package:flutter_app/models/auth_services.dart';
+import 'package:flutter_app/models/gradient_theme.dart';
 import 'package:flutter_app/screens/dashboard.dart';
 import 'package:flutter_app/models/database_service.dart';
 import 'package:flutter_app/screens/home.dart';
@@ -161,7 +162,13 @@ class _SignUpFormScreenState extends State<SignUpFormScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //appBar: AppBar(title: Text('SignUp Form')),
+      appBar: AppBar(
+        title: Text('SignUp Form'),
+        backgroundColor: Colors.transparent,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(gradient: AppGradients.light),
+        ),
+      ),
       //appBar: AppBar(title: Text('SignUp')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

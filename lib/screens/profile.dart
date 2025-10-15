@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/localization/words.dart';
 import 'package:flutter_app/models/auth_services.dart';
 import 'package:flutter_app/models/database_service.dart';
+import 'package:flutter_app/models/gradient_theme.dart';
 
 class ProfileFormScreen extends StatefulWidget {
   @override
@@ -88,7 +89,13 @@ class _ProfileFormScreenState extends State<ProfileFormScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       //appBar: AppBar(title: Text('Profile Form')),
-      appBar: AppBar(title: Text('Profile')),
+      appBar: AppBar(
+        title: Text('Profile'),
+        backgroundColor: Colors.transparent,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(gradient: AppGradients.light),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(

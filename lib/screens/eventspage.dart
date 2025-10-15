@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/models/gradient_theme.dart';
+import 'package:flutter_app/models/light_mode.dart';
 import 'package:flutter_app/screens/create_event.dart';
 import 'package:flutter_app/screens/ongoing_events.dart';
 
@@ -29,6 +31,10 @@ class _EventsPageState extends State<EventsPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(_currentIndex == 0 ? 'Ongoing Events' : 'Create Event'),
+        backgroundColor: Colors.transparent,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(gradient: AppGradients.light),
+        ),
       ),
       body: _screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
