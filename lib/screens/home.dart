@@ -8,7 +8,6 @@ import 'package:geolocator/geolocator.dart';
 import '../models/request.dart';
 import 'request_response.dart';
 import 'package:flutter_app/models/utility.dart';
-import 'package:flutter_app/models/light_mode.dart';
 
 class HomeScreen extends StatefulWidget {
   @override

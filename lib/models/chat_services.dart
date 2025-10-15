@@ -1,9 +1,6 @@
-import 'dart:math';
-
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_app/localization/words.dart';
 import 'package:flutter_app/models/auth_services.dart';
-import 'package:flutter_app/models/database_service.dart';
 import 'package:flutter_app/models/message.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -72,14 +69,14 @@ class ChatService {
 
   // send message to a request
   Future<void> sendMessage(String receiverUser, String message) async {
-    Map<String, dynamic>? userProfile = await DatabaseService().getDataByEmail(
+    /* Map<String, dynamic>? userProfile = await DatabaseService().getDataByEmail(
       email: currentUser,
       path: Words.profileData,
     );
     if (userProfile != null) {
       final String _firstName = userProfile[Words.profilefn];
       final String _lastName = userProfile[Words.profilelm];
-    }
+    }*/
 
     Message newMessage = Message(
       sender: currentUser,
@@ -90,7 +87,7 @@ class ChatService {
 
     List<String> ids = [currentUser, receiverUser];
     ids.sort(); // sort the ids to ensure consistent order
-    String chatId = ids.join('_');
+    //String chatId = ids.join('_');
 
     //get messages of a request
 
@@ -138,7 +135,7 @@ class ChatService {
               allMessages.add(message);
               processedKeys.add(key);
             } catch (e) {
-              print('Error processing sent message: $e');
+              throw 'Failed to process message';
             }
           }
         });
@@ -155,7 +152,7 @@ class ChatService {
               message['key'] = key;
               allMessages.add(message);
             } catch (e) {
-              print('Error processing received message: $e');
+              throw 'Error processing received message';
             }
           }
         });

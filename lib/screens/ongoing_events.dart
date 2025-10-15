@@ -4,11 +4,13 @@ import 'package:flutter_app/localization/words.dart';
 import 'package:flutter_app/models/auth_services.dart';
 import 'package:flutter_app/models/database_service.dart';
 import 'package:flutter_app/models/event.dart';
-import 'package:flutter_app/models/utility.dart';
 import 'package:flutter_app/screens/event_edit.dart';
+import 'package:intl/intl.dart';
 
 // Dummy screens for the tabs
 class OngoingEventsScreen extends StatefulWidget {
+  const OngoingEventsScreen({super.key});
+
   //const OngoingEventsScreen({super.key});
   @override
   _OngoingEventsScreenState createState() => _OngoingEventsScreenState();
@@ -18,19 +20,20 @@ class _OngoingEventsScreenState extends State<OngoingEventsScreen> {
   List<Event> events = [];
   List<Event> filteredEvents = [];
 
-  Future<String> _fetchName(String userEmail) async {
-    Map<String, dynamic>? eventUsrData = await DatabaseService().getDataByEmail(
+  Future<String> _fetchName() async {
+    final userEmail =
+        authServiceNotifier.value.currentUser?.email ?? 'Email not found';
+
+    Map<String, dynamic>? userProfile = await DatabaseService().getDataByEmail(
       email: userEmail,
-      path: Words.eventPath,
+      path: Words.profileData,
     );
 
-    if (eventUsrData != null) {
-      String firstName = eventUsrData[Words.eventUser] ?? 'Name unknown';
-      print(firstName);
-      return firstName.toString();
-    } else {
-      return 'Name unknown';
+    String _firstName = '';
+    if (userProfile != null) {
+      _firstName = userProfile[Words.profilefn];
     }
+    return _firstName;
   }
 
   Future<void> _fetchRequests() async {
@@ -78,7 +81,10 @@ class _OngoingEventsScreenState extends State<OngoingEventsScreen> {
 
     filteredEvents = [];
     for (var req in events) {
-      if (req.status.toLowerCase() != 'completed') {
+      if (req.status.toLowerCase() != 'completed' &&
+          (req.dateTime.isAfter(
+            DateTime.now().subtract(const Duration(days: 1)),
+          ))) {
         filteredEvents.add(req);
       }
     }
@@ -139,9 +145,9 @@ class _OngoingEventsScreenState extends State<OngoingEventsScreen> {
                   children: [
                     // --- Add the Icon widget here ---
                     Icon(
-                      Icons.message_outlined, // Use an appropriate icon
+                      Icons.event, // Use an appropriate icon
                       color: Colors.grey[700],
-                      size: 24,
+                      size: 30,
                     ),
                     const SizedBox(width: 12), // Add some spacing
                     Expanded(
@@ -157,13 +163,13 @@ class _OngoingEventsScreenState extends State<OngoingEventsScreen> {
                           ),
                           // Use FutureBuilder to display the name
                           FutureBuilder<String>(
-                            future: _fetchName(req.email),
+                            future: _fetchName(),
                             builder: (context, snapshot) {
                               // Display a loading indicator or placeholder text
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
                                 return Text(
-                                  'Request from: ${req.email.split('@')[0]} (Loading...)',
+                                  'Request from: (Loading...)',
                                   style: const TextStyle(
                                     fontSize: 10,
                                     fontWeight: FontWeight.w600,
@@ -206,20 +212,20 @@ class _OngoingEventsScreenState extends State<OngoingEventsScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          Utility.formatDateTime(req.dateTime),
+                          'Event date : ${DateFormat.yMMMd().format(req.dateTime.toLocal())}',
                           style: TextStyle(
                             fontSize: 9,
                             color: Colors.grey[600],
                           ),
                         ),
                         const SizedBox(height: 20),
-                        Text(
+                        /*Text(
                           'Status: ${req.status}',
                           style: TextStyle(
                             fontSize: 12,
                             color: Colors.grey[600],
                           ),
-                        ),
+                        ),*/
                       ],
                     ),
                   ],

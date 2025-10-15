@@ -15,23 +15,14 @@
         "flutter_launcher_icons",
         "geolocator",
         "get",
+        "intl",
         "permission_handler",
         "rxdart"
       ],
       "devDependencies": [
         "flutter_lints",
         "flutter_test",
-        "intl",
         "rename"
-      ]
-    },
-    {
-      "name": "intl",
-      "version": "0.20.2",
-      "dependencies": [
-        "clock",
-        "meta",
-        "path"
       ]
     },
     {
@@ -66,6 +57,15 @@
         "stream_channel",
         "test_api",
         "vector_math"
+      ]
+    },
+    {
+      "name": "intl",
+      "version": "0.20.2",
+      "dependencies": [
+        "clock",
+        "meta",
+        "path"
       ]
     },
     {
@@ -171,23 +171,13 @@
       ]
     },
     {
-      "name": "path",
-      "version": "1.9.1",
-      "dependencies": []
-    },
-    {
-      "name": "meta",
-      "version": "1.16.0",
-      "dependencies": []
-    },
-    {
-      "name": "clock",
-      "version": "1.1.2",
-      "dependencies": []
-    },
-    {
       "name": "lints",
       "version": "6.0.0",
+      "dependencies": []
+    },
+    {
+      "name": "path",
+      "version": "1.9.1",
       "dependencies": []
     },
     {
@@ -208,6 +198,11 @@
       "dependencies": [
         "async"
       ]
+    },
+    {
+      "name": "meta",
+      "version": "1.16.0",
+      "dependencies": []
     },
     {
       "name": "collection",
@@ -236,6 +231,11 @@
       "dependencies": [
         "path"
       ]
+    },
+    {
+      "name": "clock",
+      "version": "1.1.2",
+      "dependencies": []
     },
     {
       "name": "fake_async",

@@ -4,7 +4,6 @@ import 'package:flutter_app/models/auth_services.dart';
 import 'package:flutter_app/models/database_service.dart';
 import 'package:flutter_app/models/event.dart';
 import 'package:intl/intl.dart';
-import '../models/request.dart';
 
 class EventEditScreen extends StatefulWidget {
   final Event event;
@@ -16,6 +15,11 @@ class EventEditScreen extends StatefulWidget {
 }
 
 class _EventEditScreenState extends State<EventEditScreen> {
+  final _descriptionController = TextEditingController();
+  String? _selectedCategory;
+  DateTime? selectedDate;
+  final List<String> _categories = ['Tutor', 'Cleaning', 'Health Care'];
+
   // Fetch user profile details
   final userEmail =
       authServiceNotifier.value.currentUser?.email ?? 'Email not found';
@@ -23,6 +27,14 @@ class _EventEditScreenState extends State<EventEditScreen> {
   @override
   void dispose() {
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    selectedDate = widget.event.dateTime;
+    _descriptionController.text = widget.event.description;
+    _selectedCategory = widget.event.title;
   }
 
   void _deleteRequest(String key) async {
@@ -36,7 +48,18 @@ class _EventEditScreenState extends State<EventEditScreen> {
     Navigator.of(context).pop();
   }
 
-  // Inside your _RequestResponseScreenState class
+  Future<void> _selectDate() async {
+    final DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime.now(),
+      lastDate: DateTime(DateTime.now().year + 1),
+    );
+
+    setState(() {
+      selectedDate = pickedDate;
+    });
+  }
 
   void _showDeleteConfirmationDialog(String key) {
     showDialog(
@@ -81,9 +104,11 @@ class _EventEditScreenState extends State<EventEditScreen> {
           path:
               '${Words.eventPath}/$key', // Correctly targets the specific request
           data: {
-            Words.eventDesc: userEmail,
-            Words.eventType: 'type',
-            Words.eventTimestamp: 'datetime',
+            Words.eventDesc: _descriptionController.text,
+            Words.eventType: _selectedCategory,
+            Words.eventTimestamp:
+                selectedDate?.toIso8601String() ??
+                DateTime.now().toIso8601String(),
           },
         );
         ScaffoldMessenger.of(
@@ -99,32 +124,73 @@ class _EventEditScreenState extends State<EventEditScreen> {
   Widget build(BuildContext context) {
     final req = widget.event;
     final isOwner = userEmail == req.email;
-
     return Scaffold(
       appBar: AppBar(
-        title: Text(isOwner ? 'Your request' : 'Respond to Request'),
+        title: Text(isOwner ? 'Event Edit Screen' : 'Respond to Request'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              req.title,
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              textAlign: TextAlign.left,
+              'You can change your category',
+              style: TextStyle(fontSize: 16),
+            ),
+
+            // Dropdown list
+            DropdownButton<String>(
+              value: _selectedCategory,
+              onChanged: (String? newValue) {
+                setState(() {
+                  _selectedCategory = newValue;
+                });
+              },
+              items: _categories.map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+            ),
+
+            const SizedBox(height: 20),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              spacing: 20,
+              children: <Widget>[
+                Text(
+                  selectedDate != null
+                      ? '${selectedDate!.day}/${selectedDate!.month}/${selectedDate!.year}'
+                      : 'No date selected',
+                ),
+                OutlinedButton(
+                  onPressed: _selectDate,
+                  child: const Text('Change Date'),
+                ),
+              ],
             ),
             const SizedBox(height: 8),
-            Text(req.description),
+            TextField(
+              controller: _descriptionController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                //labelText: req.description,
+              ),
+              maxLines: 3,
+            ),
+            //Text(req.description),
             const SizedBox(height: 12),
             Text(
-              'Requested at: ${DateFormat.yMMMd().add_jm().format(req.dateTime.toLocal())}',
+              'Event date : ${DateFormat.yMMMd().format(req.dateTime.toLocal())}',
             ),
             const SizedBox(height: 16),
             // Conditionally show the Delete or Send Response button
             if (isOwner) ...[
               ElevatedButton(
                 onPressed: () => _editEvent(req.key),
-                child: const Text('Edit Event'),
+                child: const Text('Save your change'),
               ),
               SizedBox(height: 20),
               ElevatedButton(
@@ -134,12 +200,19 @@ class _EventEditScreenState extends State<EventEditScreen> {
                   ); // Show confirmation dialog
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red, // Make the button red
+                  backgroundColor: Colors.red,
+                  minimumSize: const Size(
+                    150,
+                    50,
+                  ), // Set a minimum width and height
+                  maximumSize: const Size(
+                    300,
+                    80,
+                  ), // Set a maximum width and height // Make the button red
                 ),
                 child: const Text('Delete Event'),
               ),
             ],
-
             //else
           ],
         ),

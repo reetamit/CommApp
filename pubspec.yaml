@@ -46,6 +46,7 @@ dependencies:
   geolocator: ^14.0.2
   get: ^4.7.2
   rxdart: ^0.28.0
+  intl: ^0.20.2
 
 dev_dependencies:
   flutter_test:
@@ -58,7 +59,6 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
-  intl: ^0.20.2 # Use the latest version
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

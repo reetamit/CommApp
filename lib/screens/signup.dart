@@ -7,7 +7,6 @@ import 'package:flutter_app/screens/dashboard.dart';
 import 'package:flutter_app/models/database_service.dart';
 import 'package:flutter_app/screens/home.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:flutter_app/models/location_service.dart';
 import 'package:get/get.dart';
 
 class SignUpFormScreen extends StatefulWidget {

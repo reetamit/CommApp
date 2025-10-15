@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/localization/words.dart';
 import 'package:flutter_app/models/auth_services.dart';
@@ -20,6 +19,9 @@ class _ProfileFormScreenState extends State<ProfileFormScreen> {
   //bool _obscurePassword = true;
   // allow multiple selections
   Set<String> _selectedInterests = {};
+
+  final userEmail =
+      authServiceNotifier.value.currentUser?.email ?? 'Email not found';
 
   final List<String> _interests = [
     'Tutoring',
@@ -76,13 +78,29 @@ class _ProfileFormScreenState extends State<ProfileFormScreen> {
     super.dispose();
   }
 
-  void logout() async {
-    try {
-      await authServiceNotifier.value.signOut();
-      print('Log out succcessfully');
-    } on FirebaseAuthException catch (e) {
-      print(e.message);
+  void _updateProfile() async {
+    String? profileKey = await DatabaseService().getPathKey(
+      email: userEmail,
+      path: Words.profileData,
+    );
+
+    if (profileKey != null) {
+      //Update status of the request to 'Responded'
+      await DatabaseService().update(
+        path:
+            '${Words.profileData}/$profileKey', // Correctly targets the specific request
+        data: {
+          Words.profileph: _phoneController.text,
+          Words.profileil: _selectedInterests.toList(),
+        },
+      );
     }
+
+    // For now just show a confirmation. In a real app you'd call an API.
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text('Profile is updated!')));
+    Navigator.of(context).pop();
   }
 
   @override
@@ -103,6 +121,7 @@ class _ProfileFormScreenState extends State<ProfileFormScreen> {
           child: ListView(
             children: [
               TextFormField(
+                readOnly: true,
                 controller: _firstNameController,
                 decoration: InputDecoration(labelText: 'First Name'),
                 validator: (value) =>
@@ -110,6 +129,7 @@ class _ProfileFormScreenState extends State<ProfileFormScreen> {
               ),
               SizedBox(height: 16),
               TextFormField(
+                readOnly: true,
                 controller: _lastNameController,
                 decoration: InputDecoration(labelText: 'Last Name'),
                 validator: (value) =>
@@ -125,6 +145,7 @@ class _ProfileFormScreenState extends State<ProfileFormScreen> {
               ),
               SizedBox(height: 16),
               TextFormField(
+                readOnly: true,
                 controller: _emailController,
                 decoration: InputDecoration(labelText: 'Email'),
                 keyboardType: TextInputType.emailAddress,
@@ -215,6 +236,7 @@ class _ProfileFormScreenState extends State<ProfileFormScreen> {
                     //  _selectedInterests.clear();
                     //});
                   }
+                  _updateProfile();
                 },
                 style: Theme.of(context).elevatedButtonTheme.style,
                 child: Text('Save Profile'),

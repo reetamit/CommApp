@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/gradient_theme.dart';
-import 'package:flutter_app/models/light_mode.dart';
 
 class AboutUs extends StatelessWidget {
-  String about_us =
+  String aboutUs =
       '''Welcome to Community Connect \nwhere Local voices, Global impacts.''';
 
-  String about_para =
+  String aboutPara =
       '''We’re a community-powered platform built to connect people who care with causes that matter. Whether you're looking to lend a hand at a local shelter, tutor students online, clean up a park, or support a nonprofit’s mission, our app makes volunteering simple, meaningful, and accessible. Our Mission To empower individuals and organizations to create positive change through shared time,skills, and heart. What we do connect volunteers with opportunities that match their passions and availability support nonprofits by amplifying their reach and streamlining volunteer coordination build community by fostering relationships rooted in service, empathy, and impact why it matters. We believe that small acts of kindness can spark big transformations. By making it easier to get involved, we’re helping build a world where everyone contributes— and everyone belongs.
     
 Join us. Be part of the change.''';
 
-  String contact_us = '''
+  String contactUs = '''
   Build by Reetam Biswas
   Get in Touch : reetamit@gmail.com
   Let's Talk      : 617-880-9546
@@ -33,7 +32,7 @@ Join us. Be part of the change.''';
             Padding(
               padding: EdgeInsets.all(15.0),
               child: Text(
-                about_us,
+                aboutUs,
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
               //Text(about_para,style: TextStyle(fontSize: 13)),
@@ -42,7 +41,7 @@ Join us. Be part of the change.''';
             Padding(
               padding: EdgeInsets.all(15.0),
               child: Text(
-                about_para,
+                aboutPara,
                 style: TextStyle(fontSize: 13, fontWeight: FontWeight.normal),
               ),
               //Text(about_para,style: TextStyle(fontSize: 13)),
@@ -72,7 +71,7 @@ Join us. Be part of the change.''';
                 ),
 
                 Text(
-                  contact_us,
+                  contactUs,
                   style: TextStyle(fontSize: 13, fontWeight: FontWeight.normal),
                 ),
                 Padding(padding: EdgeInsetsGeometry.all(10)),
