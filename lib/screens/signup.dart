@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/localization/words.dart';
 import 'package:flutter_app/models/auth_services.dart';
 import 'package:flutter_app/models/gradient_theme.dart';
+import 'package:flutter_app/screens/agreement_dialog.dart';
 import 'package:flutter_app/screens/dashboard.dart';
 import 'package:flutter_app/models/database_service.dart';
 import 'package:flutter_app/screens/home.dart';
@@ -25,6 +26,8 @@ class _SignUpFormScreenState extends State<SignUpFormScreen> {
   final _addresscontroller = TextEditingController();
   final _zipcodecontroller = TextEditingController();
   final _passwordController = TextEditingController();
+  String _agreementStatus = 'Please accept the terms to continue.';
+  bool didAgree = false;
 
   bool _obscurePassword = true;
   // allow multiple selections
@@ -37,6 +40,26 @@ class _SignUpFormScreenState extends State<SignUpFormScreen> {
     'Health Care',
     'Cleaning Support',
   ];
+
+  void _showTermsDialog() async {
+    final didAgree = await showDialog<bool>(
+      context: context,
+      barrierDismissible: false, // Prevents closing by tapping outside
+      builder: (BuildContext context) {
+        return const AgreementDialog();
+      },
+    );
+
+    if (didAgree != null) {
+      setState(() {
+        _agreementStatus = didAgree
+            ? 'You have accepted the terms.'
+            : 'You have declined the terms.';
+      });
+      // Handle the user's choice, e.g., save it to shared preferences
+      // or navigate to a new screen.
+    }
+  }
 
   @override
   void dispose() {
@@ -169,139 +192,193 @@ class _SignUpFormScreenState extends State<SignUpFormScreen> {
         ),
       ),
       //appBar: AppBar(title: Text('SignUp')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: ListView(
-            children: [
-              TextFormField(
-                controller: _firstNameController,
-                decoration: InputDecoration(labelText: 'First Name'),
-                validator: (value) =>
-                    value == null || value.isEmpty ? 'Enter first name' : null,
-              ),
-              SizedBox(height: 16),
-              TextFormField(
-                controller: _lastNameController,
-                decoration: InputDecoration(labelText: 'Last Name'),
-                validator: (value) =>
-                    value == null || value.isEmpty ? 'Enter last name' : null,
-              ),
-              SizedBox(height: 16),
-              TextFormField(
-                controller: _phoneController,
-                decoration: InputDecoration(labelText: 'Phone'),
-                keyboardType: TextInputType.phone,
-                validator: (value) =>
-                    value == null || value.isEmpty ? 'Enter phone' : null,
-              ),
-              SizedBox(height: 16),
-              TextFormField(
-                controller: _emailController,
-                decoration: InputDecoration(labelText: 'Email'),
-                keyboardType: TextInputType.emailAddress,
-                validator: (value) =>
-                    value == null || value.isEmpty ? 'Enter email' : null,
-              ),
-              SizedBox(height: 16),
-              // Password field (masked)
-              TextFormField(
-                controller: _passwordController,
-                decoration: InputDecoration(
-                  labelText: 'Password',
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      _obscurePassword
-                          ? Icons.visibility_off
-                          : Icons.visibility,
-                    ),
-                    onPressed: () => setState(() {
-                      _obscurePassword = !_obscurePassword;
-                    }),
-                  ),
-                ),
-                obscureText: _obscurePassword,
-                validator: (value) {
-                  // Password is optional for new SignUps, but if provided enforce length
-                  if (value != null && value.isNotEmpty && value.length < 6) {
-                    return 'Password must be at least 6 characters';
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 16),
-              TextFormField(
-                controller: _addresscontroller,
-                decoration: InputDecoration(labelText: 'Address'),
-                keyboardType: TextInputType.emailAddress,
-                validator: (value) =>
-                    value == null || value.isEmpty ? 'Enter Address' : null,
-              ),
-              SizedBox(height: 16),
-              TextFormField(
-                controller: _zipcodecontroller,
-                decoration: InputDecoration(labelText: 'Zipcode'),
-                keyboardType: TextInputType.emailAddress,
-                validator: (value) =>
-                    value == null || value.isEmpty ? 'Enter Zipcode' : null,
-              ),
-              SizedBox(height: 16),
-              // Multiple selectable interests using checkboxes
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Form(
+                key: _formKey,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Interests',
-                      style: TextStyle(fontSize: 12, color: Colors.grey[600]),
-                    ),
-                    ..._interests.map(
-                      (interest) => CheckboxListTile(
-                        title: Text(interest),
-                        value: _selectedInterests.contains(interest),
-                        controlAffinity: ListTileControlAffinity.leading,
-                        onChanged: (checked) {
-                          setState(() {
-                            if (checked == true) {
-                              _selectedInterests.add(interest);
-                            } else {
-                              _selectedInterests.remove(interest);
-                            }
-                          });
-                        },
-                        contentPadding: EdgeInsets.zero,
+                    TextFormField(
+                      controller: _firstNameController,
+                      decoration: const InputDecoration(
+                        labelText: 'First Name',
                       ),
+                      validator: (value) => value == null || value.isEmpty
+                          ? 'Enter first name'
+                          : null,
+                    ),
+                    const SizedBox(height: 16),
+                    TextFormField(
+                      controller: _lastNameController,
+                      decoration: const InputDecoration(labelText: 'Last Name'),
+                      validator: (value) => value == null || value.isEmpty
+                          ? 'Enter last name'
+                          : null,
+                    ),
+                    const SizedBox(height: 16),
+                    TextFormField(
+                      controller: _phoneController,
+                      decoration: const InputDecoration(labelText: 'Phone'),
+                      keyboardType: TextInputType.phone,
+                      validator: (value) =>
+                          value == null || value.isEmpty ? 'Enter phone' : null,
+                    ),
+                    const SizedBox(height: 16),
+                    TextFormField(
+                      controller: _emailController,
+                      decoration: const InputDecoration(labelText: 'Email'),
+                      keyboardType: TextInputType.emailAddress,
+                      validator: (value) =>
+                          value == null || value.isEmpty ? 'Enter email' : null,
+                    ),
+                    const SizedBox(height: 16),
+                    TextFormField(
+                      controller: _passwordController,
+                      decoration: InputDecoration(
+                        labelText: 'Password',
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _obscurePassword
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                          ),
+                          onPressed: () => setState(() {
+                            _obscurePassword = !_obscurePassword;
+                          }),
+                        ),
+                      ),
+                      obscureText: _obscurePassword,
+                      validator: (value) {
+                        if (value != null &&
+                            value.isNotEmpty &&
+                            value.length < 6) {
+                          return 'Password must be at least 6 characters';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    TextFormField(
+                      controller: _addresscontroller,
+                      decoration: const InputDecoration(labelText: 'Address'),
+                      validator: (value) => value == null || value.isEmpty
+                          ? 'Enter Address'
+                          : null,
+                    ),
+                    const SizedBox(height: 16),
+                    TextFormField(
+                      controller: _zipcodecontroller,
+                      decoration: const InputDecoration(labelText: 'Zipcode'),
+                      keyboardType:
+                          TextInputType.number, // Change keyboard type
+                      validator: (value) => value == null || value.isEmpty
+                          ? 'Enter Zipcode'
+                          : null,
+                    ),
+                    const SizedBox(height: 16),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Interests',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey[600],
+                            ),
+                          ),
+                          ..._interests.map(
+                            (interest) => CheckboxListTile(
+                              title: Text(interest),
+                              value: _selectedInterests.contains(interest),
+                              controlAffinity: ListTileControlAffinity.leading,
+                              onChanged: (checked) {
+                                setState(() {
+                                  if (checked == true) {
+                                    _selectedInterests.add(interest);
+                                  } else {
+                                    _selectedInterests.remove(interest);
+                                  }
+                                });
+                              },
+                              contentPadding: EdgeInsets.zero,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 32),
+                    Text(_agreementStatus, textAlign: TextAlign.center),
+                    ElevatedButton(
+                      onPressed: _showTermsDialog,
+                      style: OutlinedButton.styleFrom(
+                        // Optional: Customize the border properties
+                        side: const BorderSide(
+                          color: Colors.black, // The color of the border
+                          width: 2.0, // The width of the border
+                        ),
+                        // Optional: Customize the text color
+                        foregroundColor: Colors.black,
+                        backgroundColor: Colors.transparent,
+                        // Optional: Customize the shape (e.g., add rounded corners)
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: const Text(
+                        'Click here to view Terms and Conditions',
+                      ),
+                    ),
+                    const SizedBox(height: 32),
+                    ElevatedButton(
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          if (_selectedInterests.isEmpty) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                  'Please select at least one interest',
+                                ),
+                              ),
+                            );
+                            return;
+                          }
+                          if (_agreementStatus != true) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                  'Please read and accept terms and conditions!',
+                                ),
+                              ),
+                            );
+                            return;
+                          }
+                          // Call register function
+                          register();
+                          if (!mounted) return;
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('SignUp record saved.'),
+                            ),
+                          );
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (_) => HomeScreen()),
+                          );
+                        }
+                      },
+                      child: const Text('Submit'),
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 32),
-              ElevatedButton(
-                onPressed: () async {
-                  if (_formKey.currentState!.validate()) {
-                    if (_selectedInterests.isEmpty) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('Please select at least one interest'),
-                        ),
-                      );
-                      return;
-                    }
-                    // Call register function
-                    register();
-                    if (!mounted) return;
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('SignUp record saved.')),
-                    );
-                    Navigator.of(
-                      context,
-                    ).push(MaterialPageRoute(builder: (_) => HomeScreen()));
-                  }
-                },
-                child: Text('Submit'),
-              ),
+
+              const SizedBox(height: 32),
             ],
           ),
         ),
