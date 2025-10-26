@@ -349,7 +349,8 @@ class _SignUpFormScreenState extends State<SignUpFormScreen> {
                             );
                             return;
                           }
-                          if (_agreementStatus != true) {
+                          if (_agreementStatus ==
+                              'You have declined the terms.') {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                 content: Text(
