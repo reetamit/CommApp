@@ -84,6 +84,7 @@ Whether you're organizing a charity drive, joining a local meetup, or simply loo
 ---
 
 ## 🧱 Project Structure
+…
 ├── lib/
 │   ├── localization/
 │   ├── models/
