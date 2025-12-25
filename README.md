@@ -90,6 +90,7 @@ Whether you're organizing a charity drive, joining a local meetup, or simply loo
 
 
 Full platform folders for Android, iOS, Web, Windows, macOS, and Linux are included.
+👉 [project_structure.txt](project_structure.txt)
 
 ---
 
