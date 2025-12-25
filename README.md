@@ -69,9 +69,6 @@ Whether you're organizing a charity drive, joining a local meetup, or simply loo
 ---
 
 ## 🖼️ Screenshots
-
-> Replace the placeholder paths with your actual screenshot files.
-
 <p align="center">
   <img src="assets/screenshots/login.png" alt="Login Screen" width="260" />
   <img src="assets/screenshots/dashboard.png" alt="Dashboard" width="260" />
