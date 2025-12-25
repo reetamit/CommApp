@@ -73,21 +73,36 @@ Whether you're organizing a charity drive, joining a local meetup, or simply loo
 > Replace the placeholder paths with your actual screenshot files.
 
 <p align="center">
-  <img src="screenshots/login.png" alt="Login Screen" width="260" />
-  <img src="screenshots/dashboard.png" alt="Dashboard" width="260" />
-  <img src="screenshots/events.png" alt="Events Page" width="260" />
+  <img src="assets/screenshots/login.png" alt="Login Screen" width="260" />
+  <img src="assets/screenshots/dashboard.png" alt="Dashboard" width="260" />
+  <img src="assets/screenshots/events.png" alt="Events Page" width="260" />
 </p>
 
 <p align="center">
-  <img src="screenshots/chat.png" alt="Chat Page" width="260" />
-  <img src="screenshots/create_event.png" alt="Create Event" width="260" />
-  <img src="screenshots/profile.png" alt="Profile Page" width="260" />
+  <img src="assets/screenshots/chat.png" alt="Chat Page" width="260" />
+  <img src="assets/screenshots/create_event.png" alt="Create Event" width="260" />
+  <img src="assets/screenshots/profile.png" alt="Profile Page" width="260" />
 </p>
 
 ---
 
 ## 🧱 Project Structure
-
+├── lib/
+│   ├── localization/
+│   ├── models/
+│   ├── screens/
+│   └── styles/
+│
+├── assets/
+│   ├── icon/
+│   └── images/
+│
+├── android/
+├── ios/
+├── web/
+├── windows/
+├── macos/
+├── linux/
 
 Full platform folders for Android, iOS, Web, Windows, macOS, and Linux are included.
 👉 [project_structure.txt](project_structure.txt)

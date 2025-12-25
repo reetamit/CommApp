@@ -17,7 +17,13 @@ class _EventCreateState extends State<EventCreateScreen> {
   DateTime? selectedDate;
   final TextEditingController _descriptionController = TextEditingController();
 
-  final List<String> _categories = ['Tutor', 'Cleaning', 'Health Care'];
+  final List<String> _categories = [
+    'Tutor',
+    'Cleaning',
+    'Health Care',
+    'Outreach',
+    'Other',
+  ];
 
   @override
   void dispose() {

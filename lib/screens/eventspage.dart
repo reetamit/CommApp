@@ -29,7 +29,7 @@ class _EventsPageState extends State<EventsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_currentIndex == 0 ? 'Ongoing Events' : 'Create Event'),
+        title: Text(_currentIndex == 0 ? 'Upcoming Events' : 'Create Event'),
         backgroundColor: Colors.transparent,
         flexibleSpace: Container(
           decoration: BoxDecoration(gradient: AppGradients.light),
