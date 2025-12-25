@@ -88,14 +88,6 @@ Whether you're organizing a charity drive, joining a local meetup, or simply loo
 
 ## 🧱 Project Structure
 
-lib/
-├── main.dart
-├── firebase_options.dart
-├── localization/
-├── models/
-├── screens/
-└── styles/
-
 
 Full platform folders for Android, iOS, Web, Windows, macOS, and Linux are included.
 
