@@ -11,7 +11,7 @@ class AboutUs extends StatelessWidget {
 Join us. Be part of the change.''';
 
   String contactUs = '''
-  Build by Stotra Biswas
+  Build by Reetam Biswas
   Get in Touch : reetamit@gmail.com
   Let's Talk      : 617-880-9546
 

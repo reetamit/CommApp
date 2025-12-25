@@ -76,9 +76,9 @@ Whether you're organizing a charity drive, joining a local meetup, or simply loo
 </p>
 
 <p align="center">
-  <img src="assets/screenshots/chat.png" alt="Chat Page" width="260" />
   <img src="assets/screenshots/create_event.png" alt="Create Event" width="260" />
-  <img src="assets/screenshots/profile.png" alt="Profile Page" width="260" />
+  <img src="assets/screenshots/request.png" alt="Profile Page" width="260" />
+  <img src="assets/screenshots/chat.png" alt="Chat Page" width="260" />
 </p>
 
 ---
