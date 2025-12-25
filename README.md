@@ -16,7 +16,6 @@
   <img src="https://img.shields.io/badge/Platform-Android%20%7C%20iOS%20%7C%20Web%20%7C%20Desktop-green" />
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" />
   <img src="https://img.shields.io/badge/Firebase-Integrated-orange" />
-  <img src="https://img.shields.io/github/stars/reetamit/commapp?style=social" />
 </p>
 
 ---
