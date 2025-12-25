@@ -1,7 +1,7 @@
 
 <p align="center">
   <!-- PROJECT LOGO -->
-  <img src="assets/icon/app_logo.png" alt="Community Connect Logo" width="160" height="160">
+  <img src="assets/icon/icon.png" alt="Community Connect Logo" width="160" height="160">
 </p>
 
 <h1 align="center">Community Connect</h1>
