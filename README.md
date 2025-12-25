@@ -84,22 +84,37 @@ Whether you're organizing a charity drive, joining a local meetup, or simply loo
 
 ## 🧱 Project Structure
 ```text
-├── lib/
-│   ├── localization/
-│   ├── models/
-│   ├── screens/
-│   └── styles/
+lib/
+├── Core Configuration
+│   ├── Firebase setup and app entry point
+│   ├── Temporary or staging files
 │
-├── assets/
-│   ├── icon/
-│   └── images/
+├── Localization
+│   ├── Multilingual word mappings and language support
 │
-├── android/
-├── ios/
-├── web/
-├── windows/
-├── macos/
-├── linux/
+├── Models
+│   ├── Authentication and user session services
+│   ├── Chat and messaging logic
+│   ├── Database interaction layer
+│   ├── Event and request data models
+│   ├── Theming and UI customization utilities
+│   ├── Location services and geolocation logic
+│   ├── General-purpose utilities
+│
+├── Screens
+│   ├── Static pages (About Us, Home, Rewards)
+│   ├── Loading and dashboard views
+│   ├── Authentication flow
+│   │   ├── Sign-up, login, password reset, profile
+│   │   ├── Agreement and layout components
+│   ├── Event management
+│   │   ├── Create, edit, archive, and browse events
+│   ├── Volunteer interaction
+│       ├── Chat interface, request handling, and response flow
+│
+├── Styles
+│   ├── Global app styling and design tokens
+
 ```
 
 Full platform folders for Android, iOS, Web, Windows, macOS, and Linux are included.

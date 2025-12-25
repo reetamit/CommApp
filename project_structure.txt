@@ -1,7 +1,7 @@
 Repository: reetamit/commapp
-Files analyzed: 210
+Files analyzed: 136
 
-Estimated tokens: 675.4k
+Estimated tokens: 85.2k
 
 Directory structure:
 └── reetamit-commapp/
@@ -9,9 +9,8 @@ Directory structure:
     ├── analysis_options.yaml
     ├── firebase.json
     ├── flutter_app.iml
-    ├── pubspec.lock
+    ├── project_structure.txt
     ├── pubspec.yaml
-    ├── .flutter-plugins-dependencies
     ├── android/
     │   ├── build.gradle.kts
     │   ├── flutter_app_android.iml
@@ -53,11 +52,11 @@ Directory structure:
     ├── assets/
     │   ├── .DS_Store
     │   ├── icon/
-    │   └── images/
-    │       └── .DS_Store
+    │   ├── images/
+    │   │   └── .DS_Store
+    │   └── screenshots/
     ├── ios/
     │   ├── Podfile
-    │   ├── Podfile.lock
     │   ├── .DS_Store
     │   ├── .gitignore
     │   ├── Flutter/
@@ -117,26 +116,29 @@ Directory structure:
     │   │   └── utility.dart
     │   ├── screens/
     │   │   ├── aboutus.dart
-    │   │   ├── agreement_dialog.dart
     │   │   ├── app_loading_page.dart
-    │   │   ├── auth_layout.dart
-    │   │   ├── chatpage.dart
-    │   │   ├── create_event.dart
     │   │   ├── dashboard.dart
-    │   │   ├── event_edit.dart
-    │   │   ├── events_archived.dart
-    │   │   ├── eventspage.dart
     │   │   ├── home.dart
-    │   │   ├── loginpage.dart
-    │   │   ├── loginpage_bkp.dart
-    │   │   ├── message.dart
-    │   │   ├── ongoing_events.dart
-    │   │   ├── profile.dart
-    │   │   ├── request.dart
-    │   │   ├── request_response.dart
-    │   │   ├── reset_password_page.dart
     │   │   ├── rewards.dart
-    │   │   └── signup.dart
+    │   │   ├── auth/
+    │   │   │   ├── agreement_dialog.dart
+    │   │   │   ├── auth_layout.dart
+    │   │   │   ├── loginpage.dart
+    │   │   │   ├── loginpage_bkp.dart
+    │   │   │   ├── profile.dart
+    │   │   │   ├── reset_password_page.dart
+    │   │   │   └── signup.dart
+    │   │   ├── events/
+    │   │   │   ├── create_event.dart
+    │   │   │   ├── event_edit.dart
+    │   │   │   ├── events_archived.dart
+    │   │   │   ├── eventspage.dart
+    │   │   │   └── ongoing_events.dart
+    │   │   └── volunteer/
+    │   │       ├── chatpage.dart
+    │   │       ├── message.dart
+    │   │       ├── request.dart
+    │   │       └── request_response.dart
     │   └── styles/
     │       └── app_styles.dart
     ├── linux/
@@ -144,10 +146,7 @@ Directory structure:
     │   ├── .DS_Store
     │   ├── .gitignore
     │   ├── flutter/
-    │   │   ├── CMakeLists.txt
-    │   │   ├── generated_plugin_registrant.cc
-    │   │   ├── generated_plugin_registrant.h
-    │   │   └── generated_plugins.cmake
+    │   │   └── CMakeLists.txt
     │   └── runner/
     │       ├── CMakeLists.txt
     │       ├── main.cc
@@ -155,13 +154,11 @@ Directory structure:
     │       └── my_application.h
     ├── macos/
     │   ├── Podfile
-    │   ├── Podfile.lock
     │   ├── .DS_Store
     │   ├── .gitignore
     │   ├── Flutter/
     │   │   ├── Flutter-Debug.xcconfig
-    │   │   ├── Flutter-Release.xcconfig
-    │   │   └── GeneratedPluginRegistrant.swift
+    │   │   └── Flutter-Release.xcconfig
     │   ├── Runner/
     │   │   ├── AppDelegate.swift
     │   │   ├── DebugProfile.entitlements
@@ -199,99 +196,22 @@ Directory structure:
     │   ├── index.html
     │   ├── manifest.json
     │   └── icons/
-    ├── windows/
-    │   ├── CMakeLists.txt
-    │   ├── .DS_Store
-    │   ├── .gitignore
-    │   ├── flutter/
-    │   │   ├── CMakeLists.txt
-    │   │   ├── generated_plugin_registrant.cc
-    │   │   ├── generated_plugin_registrant.h
-    │   │   └── generated_plugins.cmake
-    │   └── runner/
-    │       ├── CMakeLists.txt
-    │       ├── flutter_window.cpp
-    │       ├── flutter_window.h
-    │       ├── main.cpp
-    │       ├── resource.h
-    │       ├── runner.exe.manifest
-    │       ├── Runner.rc
-    │       ├── utils.cpp
-    │       ├── utils.h
-    │       ├── win32_window.cpp
-    │       ├── win32_window.h
-    │       └── resources/
-    └── .dart_tool/
-        ├── package_config.json
-        ├── package_graph.json
-        ├── version
-        ├── dartpad/
-        │   └── web_plugin_registrant.dart
-        ├── extension_discovery/
-        │   ├── README.md
-        │   └── vs_code.json
-        └── flutter_build/
-            ├── dart_plugin_registrant.dart
-            ├── 1233764a9e173edc4d1ea546018aeda6/
-            │   ├── dart_build.d
-            │   ├── dart_build.stamp
-            │   ├── dart_build_result.json
-            │   ├── debug_ios_bundle_flutter_assets.stamp
-            │   ├── debug_ios_lldb_init.stamp
-            │   ├── debug_universal_framework.stamp
-            │   ├── debug_unpack_ios.stamp
-            │   ├── flutter_assets.d
-            │   ├── gen_dart_plugin_registrant.stamp
-            │   ├── gen_localizations.stamp
-            │   ├── install_code_assets.d
-            │   ├── install_code_assets.stamp
-            │   ├── IssueLaunchRootViewControllerAccess.stamp
-            │   ├── kernel_snapshot_program.d
-            │   ├── kernel_snapshot_program.stamp
-            │   ├── native_assets.json
-            │   ├── outputs.json
-            │   ├── .filecache
-            │   └── App.framework/
-            │       └── App
-            ├── 4db15998e497129b606bd417d03b34cc/
-            │   ├── dart_build.d
-            │   ├── dart_build.stamp
-            │   ├── dart_build_result.json
-            │   ├── debug_ios_bundle_flutter_assets.stamp
-            │   ├── debug_ios_lldb_init.stamp
-            │   ├── debug_universal_framework.stamp
-            │   ├── debug_unpack_ios.stamp
-            │   ├── flutter_assets.d
-            │   ├── gen_dart_plugin_registrant.stamp
-            │   ├── gen_localizations.stamp
-            │   ├── install_code_assets.d
-            │   ├── install_code_assets.stamp
-            │   ├── IssueLaunchRootViewControllerAccess.stamp
-            │   ├── kernel_snapshot_program.d
-            │   ├── kernel_snapshot_program.stamp
-            │   ├── native_assets.json
-            │   ├── outputs.json
-            │   ├── .filecache
-            │   └── App.framework/
-            │       └── App
-            └── 61df133de3a712dcd84989358a40b23b/
-                ├── dart_build.d
-                ├── dart_build.stamp
-                ├── dart_build_result.json
-                ├── debug_ios_bundle_flutter_assets.stamp
-                ├── debug_ios_lldb_init.stamp
-                ├── debug_universal_framework.stamp
-                ├── debug_unpack_ios.stamp
-                ├── flutter_assets.d
-                ├── gen_dart_plugin_registrant.stamp
-                ├── gen_localizations.stamp
-                ├── install_code_assets.d
-                ├── install_code_assets.stamp
-                ├── IssueLaunchRootViewControllerAccess.stamp
-                ├── kernel_snapshot_program.d
-                ├── kernel_snapshot_program.stamp
-                ├── native_assets.json
-                ├── outputs.json
-                ├── .filecache
-                └── App.framework/
-                    └── App
+    └── windows/
+        ├── CMakeLists.txt
+        ├── .DS_Store
+        ├── .gitignore
+        ├── flutter/
+        │   └── CMakeLists.txt
+        └── runner/
+            ├── CMakeLists.txt
+            ├── flutter_window.cpp
+            ├── flutter_window.h
+            ├── main.cpp
+            ├── resource.h
+            ├── runner.exe.manifest
+            ├── Runner.rc
+            ├── utils.cpp
+            ├── utils.h
+            ├── win32_window.cpp
+            ├── win32_window.h
+            └── resources/
