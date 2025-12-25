@@ -84,7 +84,7 @@ Whether you're organizing a charity drive, joining a local meetup, or simply loo
 ---
 
 ## 🧱 Project Structure
-…
+```text
 ├── lib/
 │   ├── localization/
 │   ├── models/
@@ -101,6 +101,7 @@ Whether you're organizing a charity drive, joining a local meetup, or simply loo
 ├── windows/
 ├── macos/
 ├── linux/
+```
 
 Full platform folders for Android, iOS, Web, Windows, macOS, and Linux are included.
 👉 [project_structure.txt](project_structure.txt)
