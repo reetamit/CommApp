@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/models/auth_services.dart';
 import 'package:flutter_app/models/gradient_background.dart';
 import 'package:flutter_app/screens/dashboard.dart';
-import 'package:flutter_app/screens/signup.dart';
+import 'package:flutter_app/screens/auth/signup.dart';
 import 'package:flutter_app/styles/app_styles.dart';
 import 'package:flutter_app/localization/words.dart';
-import 'package:flutter_app/screens/reset_password_page.dart';
+import 'package:flutter_app/screens/auth/reset_password_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

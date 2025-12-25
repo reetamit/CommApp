@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/home.dart';
-import 'package:flutter_app/screens/loginpage.dart';
-import 'package:flutter_app/screens/profile.dart';
-import 'package:flutter_app/screens/request.dart';
+import 'package:flutter_app/screens/auth/loginpage.dart';
+import 'package:flutter_app/screens/auth/profile.dart';
+import 'package:flutter_app/screens/volunteer/request.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({Key? key}) : super(key: key);

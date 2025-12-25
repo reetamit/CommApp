@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/localization/words.dart';
 import 'package:flutter_app/models/auth_services.dart';
 import 'package:flutter_app/models/gradient_theme.dart';
-import 'package:flutter_app/screens/agreement_dialog.dart';
+import 'package:flutter_app/screens/auth/agreement_dialog.dart';
 import 'package:flutter_app/screens/dashboard.dart';
 import 'package:flutter_app/models/database_service.dart';
 import 'package:flutter_app/screens/home.dart';

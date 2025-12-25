@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_app/models/light_mode.dart';
 import 'firebase_options.dart';
-import 'package:flutter_app/screens/loginpage.dart';
+import 'package:flutter_app/screens/auth/loginpage.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

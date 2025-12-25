@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/gradient_theme.dart';
-import 'package:flutter_app/screens/EventsPage.dart';
+import 'package:flutter_app/screens/events/eventsPage.dart';
 import 'package:flutter_app/screens/aboutus.dart';
 import 'package:flutter_app/screens/home.dart';
-import 'package:flutter_app/screens/loginpage.dart';
-import 'package:flutter_app/screens/message.dart';
-import 'package:flutter_app/screens/profile.dart';
-import 'package:flutter_app/screens/request.dart';
+import 'package:flutter_app/screens/auth/loginpage.dart';
+import 'package:flutter_app/screens/volunteer/message.dart';
+import 'package:flutter_app/screens/auth/profile.dart';
+import 'package:flutter_app/screens/volunteer/request.dart';
 import 'package:flutter_app/models/light_mode.dart';
 import 'package:flutter_app/screens/rewards.dart';
 

@@ -4,7 +4,7 @@ import 'package:flutter_app/localization/words.dart';
 import 'package:flutter_app/models/auth_services.dart';
 import 'package:flutter_app/models/chat_services.dart';
 import 'package:flutter_app/models/utility.dart';
-import 'package:flutter_app/screens/chatpage.dart';
+import 'package:flutter_app/screens/volunteer/chatpage.dart';
 
 class MessageScreen extends StatelessWidget {
   MessageScreen({Key? key}) : super(key: key);

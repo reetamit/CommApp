@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/gradient_theme.dart';
-import 'package:flutter_app/screens/create_event.dart';
-import 'package:flutter_app/screens/ongoing_events.dart';
+import 'package:flutter_app/screens/events/create_event.dart';
+import 'package:flutter_app/screens/events/ongoing_events.dart';
 
 // The main EventsPage with the BottomNavigationBar
 class EventsPage extends StatefulWidget {

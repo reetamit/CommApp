@@ -4,7 +4,7 @@ import 'package:flutter_app/localization/words.dart';
 import 'package:flutter_app/models/auth_services.dart';
 import 'package:flutter_app/models/database_service.dart';
 import 'package:flutter_app/models/event.dart';
-import 'package:flutter_app/screens/event_edit.dart';
+import 'package:flutter_app/screens/events/event_edit.dart';
 import 'package:intl/intl.dart';
 
 // Dummy screens for the tabs
